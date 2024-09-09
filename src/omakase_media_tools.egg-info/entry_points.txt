@@ -1,0 +1,2 @@
+[console_scripts]
+omt = omakase_media_tools.omt:main

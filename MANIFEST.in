@@ -1,0 +1,5 @@
+include LICENSE
+include README.md
+recursive-include src/omakase_media_tools/docs *
+recursive-include src/omakase_media_tools/media *
+recursive-include src/omakase_media_tools/mediaconvert *
