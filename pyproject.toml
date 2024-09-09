@@ -1,0 +1,36 @@
+[build-system]
+requires = [ "setuptools>=45", "wheel",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omakase-media-tools"
+version = "0.1.14"
+description = "A CLI utility and samples for creation of sample media and temporal metadata tracks for use with the Omakase Player framework"
+readme = "README_PYPI.md"
+requires-python = ">=3.6"
+classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved :: Apache Software License", "Operating System :: OS Independent",]
+dependencies = [ "ffmpeg-python", "ffmpeg_bitrate_stats",]
+[[project.authors]]
+name = "ByOmakase"
+email = "info@byomakase.org"
+
+[project.license]
+text = "Apache License 2.0"
+
+[project.scripts]
+omt = "omakase_media_tools.omt:main"
+
+[project.urls]
+Homepage = "https://github.com/byomakase/omakase-player"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.package-data]
+omakase_media_tools = [ "*.py", "file_log/*.py", "docs/**/*", "media/**/*", "mediaconvert/**/*",]
+
+[tool.setuptools.packages.find]
+where = [ "src",]

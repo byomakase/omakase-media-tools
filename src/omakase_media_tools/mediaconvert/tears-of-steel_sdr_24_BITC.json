@@ -1,0 +1,904 @@
+{
+    "Queue": "arn:aws:mediaconvert:us-east-1:123456123456:queues/Default",
+    "Role": "arn:aws:iam::123456123456:role/MediaConvert_Default_Role",
+    "AccelerationSettings": {
+        "Mode": "DISABLED"
+    },
+    "HopDestinations": [],
+    "Priority": 0,
+    "Settings": {
+        "Inputs": [
+            {
+                "AudioSelectors": {
+                    "EN 2.0": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK"
+                    },
+                    "EN 2.0 L": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "RemixSettings": {
+                            "ChannelMapping": {
+                                "OutputChannels": [
+                                    {
+                                        "InputChannelsFineTune": [
+                                            0,
+                                            -60
+                                        ]
+                                    },
+                                    {
+                                        "InputChannelsFineTune": [
+                                            0,
+                                            -60
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ChannelsIn": 2,
+                            "ChannelsOut": 2
+                        }
+                    },
+                    "EN 2.0 R": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "RemixSettings": {
+                            "ChannelMapping": {
+                                "OutputChannels": [
+                                    {
+                                        "InputChannelsFineTune": [
+                                            -60,
+                                            0
+                                        ]
+                                    },
+                                    {
+                                        "InputChannelsFineTune": [
+                                            -60,
+                                            0
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ChannelsIn": 2,
+                            "ChannelsOut": 2
+                        }
+                    },
+                    "EN 5.1": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "ExternalAudioFileInput": "s3://your-input-bucket/blender/tears-of-steel/audio/Surround-TOS_DVDSURROUND-Dolby%205.1.ac3"
+                    },
+                    "EN 5.1 L": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "ExternalAudioFileInput": "s3://your-input-bucket/blender/tears-of-steel/audio/Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+                        "RemixSettings": {
+                            "ChannelMapping": {
+                                "OutputChannels": [
+                                    {
+                                        "InputChannelsFineTune": [
+                                            0,
+                                            -60,
+                                            -60,
+                                            -60,
+                                            -60,
+                                            -60
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ChannelsIn": 6,
+                            "ChannelsOut": 1
+                        }
+                    },
+                    "EN 5.1 R": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "ExternalAudioFileInput": "s3://your-input-bucket/blender/tears-of-steel/audio/Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+                        "RemixSettings": {
+                            "ChannelMapping": {
+                                "OutputChannels": [
+                                    {
+                                        "InputChannelsFineTune": [
+                                            -60,
+                                            0,
+                                            -60,
+                                            -60,
+                                            -60,
+                                            -60
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ChannelsIn": 6,
+                            "ChannelsOut": 1
+                        }
+                    },
+                    "EN 5.1 C": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "ExternalAudioFileInput": "s3://your-input-bucket/blender/tears-of-steel/audio/Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+                        "RemixSettings": {
+                            "ChannelMapping": {
+                                "OutputChannels": [
+                                    {
+                                        "InputChannelsFineTune": [
+                                            -60,
+                                            -60,
+                                            0,
+                                            -60,
+                                            -60,
+                                            -60
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ChannelsIn": 6,
+                            "ChannelsOut": 1
+                        }
+                    },
+                    "EN 5.1 LFE": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "ExternalAudioFileInput": "s3://your-input-bucket/blender/tears-of-steel/audio/Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+                        "RemixSettings": {
+                            "ChannelMapping": {
+                                "OutputChannels": [
+                                    {
+                                        "InputChannelsFineTune": [
+                                            -60,
+                                            -60,
+                                            -60,
+                                            0,
+                                            -60,
+                                            -60
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ChannelsIn": 6,
+                            "ChannelsOut": 1
+                        }
+                    },
+                    "EN 5.1 LS": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "ExternalAudioFileInput": "s3://your-input-bucket/blender/tears-of-steel/audio/Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+                        "RemixSettings": {
+                            "ChannelMapping": {
+                                "OutputChannels": [
+                                    {
+                                        "InputChannelsFineTune": [
+                                            -60,
+                                            -60,
+                                            -60,
+                                            -60,
+                                            0,
+                                            -60
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ChannelsIn": 6,
+                            "ChannelsOut": 1
+                        }
+                    },
+                    "EN 5.1 RS": {
+                        "Tracks": [
+                            1
+                        ],
+                        "DefaultSelection": "NOT_DEFAULT",
+                        "SelectorType": "TRACK",
+                        "ExternalAudioFileInput": "s3://your-input-bucket/blender/tears-of-steel/audio/Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+                        "RemixSettings": {
+                            "ChannelMapping": {
+                                "OutputChannels": [
+                                    {
+                                        "InputChannelsFineTune": [
+                                            -60,
+                                            -60,
+                                            -60,
+                                            -60,
+                                            -60,
+                                            0
+                                        ]
+                                    }
+                                ]
+                            },
+                            "ChannelsIn": 6,
+                            "ChannelsOut": 1
+                        }
+                    }
+                },
+                "CaptionSelectors": {
+                    "EN Subtitles": {
+                        "SourceSettings": {
+                            "SourceType": "SRT",
+                            "FileSourceSettings": {
+                                "SourceFile": "s3://your-input-bucket/blender/tears-of-steel/subtitles/TOS-en.srt"
+                            }
+                        }
+                    }
+                },
+                "TimecodeSource": "EMBEDDED",
+                "VideoSelector": {
+                    "ColorSpace": "FOLLOW"
+                },
+                "FileInput": "s3://your-input-bucket/blender/tears-of-steel/tearsofsteel_4k.mov"
+            }
+        ],
+        "OutputGroups": [
+            {
+                "Name": "Apple HLS 720p Proxy",
+                "Outputs": [
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "VideoDescription": {
+                            "Height": 720,
+                            "Width": 1280,
+                            "ColorMetadata": "INSERT",
+                            "ScalingBehavior": "DEFAULT",
+                            "Sharpness": 100,
+                            "VideoPreprocessors": {
+                                "ColorCorrector": {
+                                    "ColorSpaceConversion": "FORCE_709"
+                                },
+                                "TimecodeBurnin": {
+                                    "FontSize": 48,
+                                    "Position": "TOP_CENTER"
+                                }
+                            },
+                            "TimecodeInsertion": "PIC_TIMING_SEI",
+                            "CodecSettings": {
+                                "Codec": "H_264",
+                                "H264Settings": {
+                                    "Bitrate": 2000000,
+                                    "FramerateControl": "SPECIFIED",
+                                    "FramerateDenominator": 1000,
+                                    "FramerateNumerator": 24000,
+                                    "GopSize": 2.00,
+                                    "GopSizeUnits": "SECONDS",
+                                    "ParControl": "SPECIFIED",
+                                    "ParDenominator": 1,
+                                    "ParNumerator": 1,
+                                    "QualityTuningLevel": "SINGLE_PASS_HQ",
+                                    "RateControlMode": "CBR"
+                                }
+                            },
+                            "DropFrameTimecode": "DISABLED"
+                        },
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioRenditionSets": "audio",
+                                "IFrameOnlyManifest": "EXCLUDE"
+                            }
+                        },
+                        "NameModifier": "_720p24_2000"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioSourceName": "EN 2.0",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_20",
+                                "LanguageCodeControl": "USE_CONFIGURED",
+                                "AudioType": 0,
+                                "LanguageCode": "ENG"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT_DEFAULT"
+                            }
+                        },
+                        "NameModifier": "_EN_20"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioSourceName": "EN 2.0 L",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_20_L",
+                                "LanguageCodeControl": "USE_CONFIGURED",
+                                "AudioType": 0,
+                                "LanguageCode": "ENG"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_20_L"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioSourceName": "EN 2.0 R",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_20_R",
+                                "LanguageCodeControl": "USE_CONFIGURED",
+                                "AudioType": 0,
+                                "LanguageCode": "ENG"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_20_R"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "NameModifier": "_EN_SUBS",
+                        "CaptionDescriptions": [
+                            {
+                                "CaptionSelectorName": "EN Subtitles",
+                                "DestinationSettings": {
+                                    "DestinationType": "WEBVTT",
+                                    "WebvttDestinationSettings": {}
+                                },
+                                "LanguageCode": "ENG",
+                                "LanguageDescription": "English Subtitles"
+                            }
+                        ]
+                    }
+                ],
+                "OutputGroupSettings": {
+                    "Type": "HLS_GROUP_SETTINGS",
+                    "HlsGroupSettings": {
+                        "TargetDurationCompatibilityMode": "SPEC_COMPLIANT",
+                        "SegmentLength": 6,
+                        "Destination": "s3://your-output-bucket/outputs/blender/tears-of-steel/hls/tears-of-steel_sdr_720p24_BITC/tears-of-steel",
+                        "MinSegmentLength": 0,
+                        "SegmentControl": "SINGLE_FILE"
+                    }
+                }
+            },
+            {
+                "Name": "Apple HLS 1080p with 5.1",
+                "Outputs": [
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "VideoDescription": {
+                            "Height": 1080,
+                            "Width": 1920,
+                            "ColorMetadata": "INSERT",
+                            "ScalingBehavior": "DEFAULT",
+                            "Sharpness": 100,
+                            "VideoPreprocessors": {
+                                "ColorCorrector": {
+                                    "ColorSpaceConversion": "FORCE_709"
+                                },
+                                "TimecodeBurnin": {
+                                    "FontSize": 48,
+                                    "Position": "TOP_CENTER"
+                                }
+                            },
+                            "TimecodeInsertion": "PIC_TIMING_SEI",
+                            "CodecSettings": {
+                                "Codec": "H_264",
+                                "H264Settings": {
+                                    "Bitrate": 5000000,
+                                    "FramerateControl": "SPECIFIED",
+                                    "FramerateDenominator": 1000,
+                                    "FramerateNumerator": 24000,
+                                    "GopSize": 2.00,
+                                    "GopSizeUnits": "SECONDS",
+                                    "ParControl": "SPECIFIED",
+                                    "ParDenominator": 1,
+                                    "ParNumerator": 1,
+                                    "QualityTuningLevel": "SINGLE_PASS_HQ",
+                                    "RateControlMode": "CBR"
+                                }
+                            },
+                            "DropFrameTimecode": "DISABLED"
+                        },
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioRenditionSets": "audio",
+                                "IFrameOnlyManifest": "EXCLUDE"
+                            }
+                        },
+                        "NameModifier": "_1080p24_5000"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioSourceName": "EN 2.0",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_20",
+                                "LanguageCodeControl": "USE_CONFIGURED",
+                                "AudioType": 0,
+                                "LanguageCode": "ENG"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT_DEFAULT"
+                            }
+                        },
+                        "NameModifier": "_EN_20"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioSourceName": "EN 2.0 L",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_20_L",
+                                "LanguageCodeControl": "USE_CONFIGURED",
+                                "AudioType": 0,
+                                "LanguageCode": "ENG"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_20_L"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioSourceName": "EN 2.0 R",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_20_R",
+                                "LanguageCodeControl": "USE_CONFIGURED",
+                                "AudioType": 0,
+                                "LanguageCode": "ENG"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_20_R"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioType": 0,
+                                "AudioSourceName": "EN 5.1",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 320000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_5_1",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_51",
+                                "LanguageCode": "ENG",
+                                "LanguageCodeControl": "USE_CONFIGURED"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_51"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioType": 0,
+                                "AudioSourceName": "EN 5.1 L",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_51_L",
+                                "LanguageCode": "ENG",
+                                "LanguageCodeControl": "USE_CONFIGURED"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_51_L"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioType": 0,
+                                "AudioSourceName": "EN 5.1 R",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_51_R",
+                                "LanguageCode": "ENG",
+                                "LanguageCodeControl": "USE_CONFIGURED"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_51_R"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioType": 0,
+                                "AudioSourceName": "EN 5.1 C",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_51_C",
+                                "LanguageCode": "ENG",
+                                "LanguageCodeControl": "USE_CONFIGURED"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_51_C"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioType": 0,
+                                "AudioSourceName": "EN 5.1 LFE",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_51_LFE",
+                                "LanguageCode": "ENG",
+                                "LanguageCodeControl": "USE_CONFIGURED"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_51_LFE"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioType": 0,
+                                "AudioSourceName": "EN 5.1 LS",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_51_LS",
+                                "LanguageCode": "ENG",
+                                "LanguageCodeControl": "USE_CONFIGURED"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_51_LS"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "AudioDescriptions": [
+                            {
+                                "AudioTypeControl": "FOLLOW_INPUT",
+                                "AudioType": 0,
+                                "AudioSourceName": "EN 5.1 RS",
+                                "CodecSettings": {
+                                    "Codec": "AAC",
+                                    "AacSettings": {
+                                        "AudioDescriptionBroadcasterMix": "NORMAL",
+                                        "Bitrate": 192000,
+                                        "RateControlMode": "CBR",
+                                        "CodecProfile": "LC",
+                                        "CodingMode": "CODING_MODE_2_0",
+                                        "RawFormat": "NONE",
+                                        "SampleRate": 48000,
+                                        "Specification": "MPEG4"
+                                    }
+                                },
+                                "StreamName": "EN_51_RS",
+                                "LanguageCode": "ENG",
+                                "LanguageCodeControl": "USE_CONFIGURED"
+                            }
+                        ],
+                        "OutputSettings": {
+                            "HlsSettings": {
+                                "AudioGroupId": "audio",
+                                "AudioOnlyContainer": "AUTOMATIC",
+                                "AudioTrackType": "ALTERNATE_AUDIO_AUTO_SELECT"
+                            }
+                        },
+                        "NameModifier": "_EN_51_RS"
+                    },
+                    {
+                        "ContainerSettings": {
+                            "Container": "M3U8",
+                            "M3u8Settings": {}
+                        },
+                        "NameModifier": "_EN_SUBS",
+                        "CaptionDescriptions": [
+                            {
+                                "CaptionSelectorName": "EN Subtitles",
+                                "DestinationSettings": {
+                                    "DestinationType": "WEBVTT",
+                                    "WebvttDestinationSettings": {}
+                                },
+                                "LanguageCode": "ENG",
+                                "LanguageDescription": "English Subtitles"
+                            }
+                        ]
+                    }
+                ],
+                "OutputGroupSettings": {
+                    "Type": "HLS_GROUP_SETTINGS",
+                    "HlsGroupSettings": {
+                        "TargetDurationCompatibilityMode": "SPEC_COMPLIANT",
+                        "SegmentLength": 6,
+                        "Destination": "s3://your-output-bucket/outputs/blender/tears-of-steel/hls/tears-of-steel_sdr_1080p24_BITC/tears-of-steel",
+                        "MinSegmentLength": 0,
+                        "SegmentControl": "SINGLE_FILE"
+                    }
+                }
+            }
+        ],
+        "TimecodeConfig": {
+            "Source": "ZEROBASED"
+        }
+    },
+    "StatusUpdateInterval": "SECONDS_10"
+}

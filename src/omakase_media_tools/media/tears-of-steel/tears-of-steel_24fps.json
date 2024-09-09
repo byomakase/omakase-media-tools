@@ -1,0 +1,787 @@
+{
+    "security_token": "tbd",
+    "data": {
+        "source_info": [
+            {
+                "name": "tearsofsteel_4k.mov",
+                "id": "V1",
+                "format": "MOV",
+                "bandwidth_kb": 73434,
+                "duration": 734,
+                "video_tracks": 1,
+                "audio_tracks": 1
+            },
+            {
+                "name": "Surround-TOS_DVDSURROUND-Dolby 5.1.ac3",
+                "id": "A1",
+                "format": "WAV",
+                "bandwidth_kb": 44.8,
+                "duration": 733.937,
+                "audio_tracks": 1,
+                "channel_count": 2,
+                "language": "ENG"
+            },
+            {
+                "name": "TOS-en.srt",
+                "id": "T1",
+                "format": "SRT",
+                "language": "ENG",
+                "usage": "subtitles"
+            }
+        ],
+        "media_info": [
+            {
+                "source_id": "V1",
+                "general_properties": {
+                    "track": [
+                        {
+                            "@type": "General",
+                            "Count": "349",
+                            "StreamCount": "1",
+                            "StreamKind": "General",
+                            "StreamKind_String": "General",
+                            "StreamKindID": "0",
+                            "VideoCount": "1",
+                            "AudioCount": "1",
+                            "Video_Format_List": "AVC",
+                            "Video_Format_WithHint_List": "AVC",
+                            "Video_Codec_List": "AVC",
+                            "Video_Language_List": "English",
+                            "Audio_Format_List": "AAC LC",
+                            "Audio_Format_WithHint_List": "AAC LC",
+                            "Audio_Codec_List": "AAC LC",
+                            "Audio_Language_List": "English",
+                            "Audio_Channels_Total": "2",
+                            "CompleteName": "./mezzanine/tearsofsteel_4k.mov",
+                            "FolderName": "./mezzanine",
+                            "FileNameExtension": "tearsofsteel_4k.mov",
+                            "FileName": "tearsofsteel_4k",
+                            "FileExtension": "mov",
+                            "Format": "MPEG-4",
+                            "Format_String": "MPEG-4",
+                            "Format_Extensions": "braw mov mp4 m4v m4a m4b m4p m4r 3ga 3gpa 3gpp 3gp 3gpp2 3g2 k3g jpm jpx mqv ismv isma ismt f4a f4b f4v",
+                            "Format_Commercial": "MPEG-4",
+                            "Format_Profile": "QuickTime",
+                            "InternetMediaType": "video/mp4",
+                            "CodecID": "qt  ",
+                            "CodecID_String": "qt   0000.02 (qt  )",
+                            "CodecID_Url": "http://www.apple.com/quicktime/download/standalone.html",
+                            "CodecID_Version": "0000.02",
+                            "CodecID_Compatible": "qt  ",
+                            "FileSize": "6737592810",
+                            "FileSize_String": "6.27 GiB",
+                            "FileSize_String1": "6 GiB",
+                            "FileSize_String2": "6.3 GiB",
+                            "FileSize_String3": "6.27 GiB",
+                            "FileSize_String4": "6.275 GiB",
+                            "Duration": "734.000",
+                            "Duration_String": "12 min 14 s",
+                            "Duration_String1": "12 min 14 s 0 ms",
+                            "Duration_String2": "12 min 14 s",
+                            "Duration_String3": "00:12:14.000",
+                            "Duration_String4": "00:12:14:00",
+                            "Duration_String5": "00:12:14.000 (00:12:14:00)",
+                            "OverallBitRate_Mode": "VBR",
+                            "OverallBitRate_Mode_String": "Variable",
+                            "OverallBitRate": "73434254",
+                            "OverallBitRate_String": "73.4 Mb/s",
+                            "FrameRate": "24.000",
+                            "FrameRate_String": "24.000 FPS",
+                            "FrameCount": "17616",
+                            "StreamSize": "658954",
+                            "StreamSize_String": "644 KiB (0%)",
+                            "StreamSize_String1": "644 KiB",
+                            "StreamSize_String2": "644 KiB",
+                            "StreamSize_String3": "644 KiB",
+                            "StreamSize_String4": "643.5 KiB",
+                            "StreamSize_String5": "644 KiB (0%)",
+                            "StreamSize_Proportion": "0.00010",
+                            "HeaderSize": "20",
+                            "DataSize": "6736933872",
+                            "FooterSize": "658918",
+                            "IsStreamable": "No",
+                            "File_Modified_Date": "2024-08-01 23:37:48 UTC",
+                            "File_Modified_Date_Local": "2024-08-01 19:37:48",
+                            "Encoded_Application": "Lavf54.29.104",
+                            "Encoded_Application_String": "Lavf54.29.104"
+                        },
+                        {
+                            "@type": "Video",
+                            "Count": "391",
+                            "StreamCount": "1",
+                            "StreamKind": "Video",
+                            "StreamKind_String": "Video",
+                            "StreamKindID": "0",
+                            "StreamOrder": "0",
+                            "ID": "1",
+                            "ID_String": "1",
+                            "Format": "AVC",
+                            "Format_String": "AVC",
+                            "Format_Info": "Advanced Video Codec",
+                            "Format_Url": "http://developers.videolan.org/x264.html",
+                            "Format_Commercial": "AVC",
+                            "Format_Profile": "High",
+                            "Format_Level": "5.1",
+                            "Format_Settings": "4 Ref Frames",
+                            "Format_Settings_CABAC": "No",
+                            "Format_Settings_CABAC_String": "No",
+                            "Format_Settings_RefFrames": "4",
+                            "Format_Settings_RefFrames_String": "4 frames",
+                            "InternetMediaType": "video/H264",
+                            "CodecID": "avc1",
+                            "CodecID_Info": "Advanced Video Coding",
+                            "Duration": "734.000",
+                            "Duration_String": "12 min 14 s",
+                            "Duration_String1": "12 min 14 s 0 ms",
+                            "Duration_String2": "12 min 14 s",
+                            "Duration_String3": "00:12:14.000",
+                            "Duration_String4": "00:12:14:00",
+                            "Duration_String5": "00:12:14.000 (00:12:14:00)",
+                            "BitRate": "73244247",
+                            "BitRate_String": "73.2 Mb/s",
+                            "BitRate_Nominal": "100000000",
+                            "BitRate_Nominal_String": "100.0 Mb/s",
+                            "Width": "3840",
+                            "Width_String": "3 840 pixels",
+                            "Height": "1714",
+                            "Height_String": "1 714 pixels",
+                            "Stored_Height": "1728",
+                            "Sampled_Width": "3840",
+                            "Sampled_Height": "1714",
+                            "PixelAspectRatio": "1.000",
+                            "DisplayAspectRatio": "2.240",
+                            "DisplayAspectRatio_String": "2.25:1",
+                            "Rotation": "0.000",
+                            "FrameRate_Mode": "CFR",
+                            "FrameRate_Mode_String": "Constant",
+                            "FrameRate_Mode_Original": "VFR",
+                            "FrameRate": "24.000",
+                            "FrameRate_String": "24.000 FPS",
+                            "FrameRate_Num": "24",
+                            "FrameRate_Den": "1",
+                            "FrameCount": "17616",
+                            "ColorSpace": "YUV",
+                            "ChromaSubsampling": "4:2:0",
+                            "ChromaSubsampling_String": "4:2:0",
+                            "BitDepth": "8",
+                            "BitDepth_String": "8 bits",
+                            "ScanType": "Progressive",
+                            "ScanType_String": "Progressive",
+                            "BitsPixel_Frame": "0.464",
+                            "StreamSize": "6720159652",
+                            "StreamSize_String": "6.26 GiB (100%)",
+                            "StreamSize_String1": "6 GiB",
+                            "StreamSize_String2": "6.3 GiB",
+                            "StreamSize_String3": "6.26 GiB",
+                            "StreamSize_String4": "6.259 GiB",
+                            "StreamSize_String5": "6.26 GiB (100%)",
+                            "StreamSize_Proportion": "0.99741",
+                            "Encoded_Library": "x264 - core 118",
+                            "Encoded_Library_String": "x264 core 118",
+                            "Encoded_Library_Name": "x264",
+                            "Encoded_Library_Version": "core 118",
+                            "Encoded_Library_Settings": "cabac=0 / ref=2 / deblock=1:0:0 / analyse=0x3:0x113 / me=dia / subme=6 / psy=1 / psy_rd=1.00:0.00 / mixed_ref=1 / me_range=16 / chroma_me=1 / trellis=0 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-2 / threads=1 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=2 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=1 / weightp=2 / keyint=18 / keyint_min=10 / scenecut=40 / intra_refresh=0 / rc_lookahead=18 / rc=cbr / mbtree=1 / bitrate=100000 / ratetol=1.0 / qcomp=0.60 / qpmin=10 / qpmax=51 / qpstep=4 / vbv_maxrate=100000 / vbv_bufsize=4166 / nal_hrd=none / ip_ratio=1.40 / aq=1:1.00",
+                            "Language": "en",
+                            "Language_String": "English",
+                            "Language_String1": "English",
+                            "Language_String2": "en",
+                            "Language_String3": "eng",
+                            "Language_String4": "en",
+                            "extra": {
+                                "CodecConfigurationBox": "avcC"
+                            }
+                        },
+                        {
+                            "@type": "Audio",
+                            "Count": "285",
+                            "StreamCount": "1",
+                            "StreamKind": "Audio",
+                            "StreamKind_String": "Audio",
+                            "StreamKindID": "0",
+                            "StreamOrder": "1",
+                            "ID": "2",
+                            "ID_String": "2",
+                            "Format": "AAC",
+                            "Format_String": "AAC LC",
+                            "Format_Info": "Advanced Audio Codec Low Complexity",
+                            "Format_Commercial": "AAC",
+                            "Format_Settings_SBR": "No (Explicit)",
+                            "Format_Settings_SBR_String": "No (Explicit)",
+                            "Format_AdditionalFeatures": "LC",
+                            "CodecID": "mp4a-40-2",
+                            "Duration": "733.937",
+                            "Duration_String": "12 min 13 s",
+                            "Duration_String1": "12 min 13 s 937 ms",
+                            "Duration_String2": "12 min 13 s",
+                            "Duration_String3": "00:12:13.937",
+                            "Duration_String5": "00:12:13.937",
+                            "BitRate_Mode": "VBR",
+                            "BitRate_Mode_String": "Variable",
+                            "BitRate": "182840",
+                            "BitRate_String": "183 kb/s",
+                            "BitRate_Maximum": "192000",
+                            "BitRate_Maximum_String": "192 kb/s",
+                            "Channels": "2",
+                            "Channels_String": "2 channels",
+                            "ChannelPositions": "Front: L R",
+                            "ChannelPositions_String2": "2/0/0",
+                            "ChannelLayout": "L R",
+                            "SamplesPerFrame": "1024",
+                            "SamplingRate": "44100",
+                            "SamplingRate_String": "44.1 kHz",
+                            "SamplingCount": "32366622",
+                            "FrameRate": "43.066",
+                            "FrameRate_String": "43.066 FPS (1024 SPF)",
+                            "FrameCount": "31608",
+                            "Compression_Mode": "Lossy",
+                            "Compression_Mode_String": "Lossy",
+                            "StreamSize": "16774204",
+                            "StreamSize_String": "16.0 MiB (0%)",
+                            "StreamSize_String1": "16 MiB",
+                            "StreamSize_String2": "16 MiB",
+                            "StreamSize_String3": "16.0 MiB",
+                            "StreamSize_String4": "16.00 MiB",
+                            "StreamSize_String5": "16.0 MiB (0%)",
+                            "StreamSize_Proportion": "0.00249",
+                            "Language": "en",
+                            "Language_String": "English",
+                            "Language_String1": "English",
+                            "Language_String2": "en",
+                            "Language_String3": "eng",
+                            "Language_String4": "en",
+                            "Default": "Yes",
+                            "Default_String": "Yes",
+                            "AlternateGroup": "1",
+                            "AlternateGroup_String": "1"
+                        }
+                    ]
+                }
+            },
+            {
+                "source_id": "A1",
+                "general_properties": {
+                    "track": [
+                        {
+                            "@type": "General",
+                            "Count": "349",
+                            "StreamCount": "1",
+                            "StreamKind": "General",
+                            "StreamKind_String": "General",
+                            "StreamKindID": "0",
+                            "AudioCount": "1",
+                            "Audio_Format_List": "AC-3",
+                            "Audio_Format_WithHint_List": "AC-3",
+                            "Audio_Codec_List": "AC-3",
+                            "Audio_Channels_Total": "6",
+                            "CompleteName": "./mezzanine/audio/Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+                            "FolderName": "./mezzanine/audio",
+                            "FileNameExtension": "Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+                            "FileName": "Surround-TOS_DVDSURROUND-Dolby%205.1",
+                            "FileExtension": "ac3",
+                            "Format": "AC-3",
+                            "Format_String": "AC-3",
+                            "Format_Info": "Audio Coding 3",
+                            "Format_Url": "https://en.wikipedia.org/wiki/AC3",
+                            "Format_Extensions": "ac3",
+                            "Format_Commercial": "Dolby Digital",
+                            "Format_Commercial_IfAny": "Dolby Digital",
+                            "FileSize": "41104896",
+                            "FileSize_String": "39.2 MiB",
+                            "FileSize_String1": "39 MiB",
+                            "FileSize_String2": "39 MiB",
+                            "FileSize_String3": "39.2 MiB",
+                            "FileSize_String4": "39.20 MiB",
+                            "Duration": "734.016",
+                            "Duration_String": "12 min 14 s",
+                            "Duration_String1": "12 min 14 s 16 ms",
+                            "Duration_String2": "12 min 14 s",
+                            "Duration_String3": "00:12:14.016",
+                            "Duration_String5": "00:12:14.016",
+                            "OverallBitRate_Mode": "CBR",
+                            "OverallBitRate_Mode_String": "Constant",
+                            "OverallBitRate": "448000",
+                            "OverallBitRate_String": "448 kb/s",
+                            "StreamSize": "0",
+                            "StreamSize_String": "0.00 Byte (0%)",
+                            "StreamSize_String1": " Byte0",
+                            "StreamSize_String2": "0.0 Byte",
+                            "StreamSize_String3": "0.00 Byte",
+                            "StreamSize_String4": "0.000 Byte",
+                            "StreamSize_String5": "0.00 Byte (0%)",
+                            "StreamSize_Proportion": "0.00000",
+                            "File_Modified_Date": "2024-08-01 23:45:53 UTC",
+                            "File_Modified_Date_Local": "2024-08-01 19:45:53"
+                        },
+                        {
+                            "@type": "Audio",
+                            "Count": "313",
+                            "StreamCount": "1",
+                            "StreamKind": "Audio",
+                            "StreamKind_String": "Audio",
+                            "StreamKindID": "0",
+                            "Format": "AC-3",
+                            "Format_String": "AC-3",
+                            "Format_Info": "Audio Coding 3",
+                            "Format_Url": "https://en.wikipedia.org/wiki/AC3",
+                            "Format_Commercial": "Dolby Digital",
+                            "Format_Commercial_IfAny": "Dolby Digital",
+                            "Format_Settings_Endianness": "Big",
+                            "Duration": "734.016",
+                            "Duration_String": "12 min 14 s",
+                            "Duration_String1": "12 min 14 s 16 ms",
+                            "Duration_String2": "12 min 14 s",
+                            "Duration_String3": "00:12:14.016",
+                            "Duration_String5": "00:12:14.016",
+                            "BitRate_Mode": "CBR",
+                            "BitRate_Mode_String": "Constant",
+                            "BitRate": "448000",
+                            "BitRate_String": "448 kb/s",
+                            "Channels": "6",
+                            "Channels_String": "6 channels",
+                            "ChannelPositions": "Front: L C R, Side: L R, LFE",
+                            "ChannelPositions_String2": "3/2/0.1",
+                            "ChannelLayout": "L R C LFE Ls Rs",
+                            "SamplesPerFrame": "1536",
+                            "SamplingRate": "48000",
+                            "SamplingRate_String": "48.0 kHz",
+                            "SamplingCount": "35232768",
+                            "FrameRate": "31.250",
+                            "FrameRate_String": "31.250 FPS (1536 SPF)",
+                            "FrameCount": "22938",
+                            "Compression_Mode": "Lossy",
+                            "Compression_Mode_String": "Lossy",
+                            "StreamSize": "41104896",
+                            "StreamSize_String": "39.2 MiB (100%)",
+                            "StreamSize_String1": "39 MiB",
+                            "StreamSize_String2": "39 MiB",
+                            "StreamSize_String3": "39.2 MiB",
+                            "StreamSize_String4": "39.20 MiB",
+                            "StreamSize_String5": "39.2 MiB (100%)",
+                            "StreamSize_Proportion": "1.00000",
+                            "ServiceKind": "CM",
+                            "ServiceKind_String": "Complete Main",
+                            "extra": {
+                                "bsid": "8",
+                                "dialnorm": "-27",
+                                "dialnorm_String": "-27 dB",
+                                "compr": "-0.28",
+                                "compr_String": "-0.28 dB",
+                                "acmod": "7",
+                                "lfeon": "1",
+                                "dialnorm_Average": "-27",
+                                "dialnorm_Average_String": "-27 dB",
+                                "dialnorm_Minimum": "-27",
+                                "dialnorm_Minimum_String": "-27 dB",
+                                "dialnorm_Maximum": "-27",
+                                "dialnorm_Maximum_String": "-27 dB",
+                                "dialnorm_Count": "32",
+                                "compr_Average": "1.03",
+                                "compr_Average_String": "1.03 dB",
+                                "compr_Minimum": "0.53",
+                                "compr_Minimum_String": "0.53 dB",
+                                "compr_Maximum": "1.49",
+                                "compr_Maximum_String": "1.49 dB",
+                                "compr_Count": "28",
+                                "dynrng_Average": "0.59",
+                                "dynrng_Average_String": "0.59 dB",
+                                "dynrng_Minimum": "0.00",
+                                "dynrng_Minimum_String": "0.00 dB",
+                                "dynrng_Maximum": "1.02",
+                                "dynrng_Maximum_String": "1.02 dB",
+                                "dynrng_Count": "32"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "source_id": "T1",
+                "general_properties": {
+                    "track": [
+                        {
+                            "@type": "General",
+                            "Count": "349",
+                            "StreamCount": "1",
+                            "StreamKind": "General",
+                            "StreamKind_String": "General",
+                            "StreamKindID": "0",
+                            "TextCount": "1",
+                            "Text_Format_List": "SubRip",
+                            "Text_Format_WithHint_List": "SubRip",
+                            "Text_Codec_List": "SubRip",
+                            "CompleteName": "./mezzanine/subtitles/TOS-en.srt",
+                            "FolderName": "./mezzanine/subtitles",
+                            "FileNameExtension": "TOS-en.srt",
+                            "FileName": "TOS-en",
+                            "FileExtension": "srt",
+                            "Format": "SubRip",
+                            "Format_String": "SubRip",
+                            "Format_Url": "http://ffdshow.sourceforge.net/tikiwiki/tiki-index.php?page=Getting+ffdshow",
+                            "Format_Extensions": "srt",
+                            "Format_Commercial": "SubRip",
+                            "FileSize": "4764",
+                            "FileSize_String": "4.65 KiB",
+                            "FileSize_String1": "5 KiB",
+                            "FileSize_String2": "4.7 KiB",
+                            "FileSize_String3": "4.65 KiB",
+                            "FileSize_String4": "4.652 KiB",
+                            "Duration": "544.000",
+                            "Duration_String": "9 min 4 s",
+                            "Duration_String1": "9 min 4 s 0 ms",
+                            "Duration_String2": "9 min 4 s",
+                            "Duration_String3": "00:09:04.000",
+                            "Duration_String5": "00:09:04.000",
+                            "OverallBitRate": "70",
+                            "OverallBitRate_String": "70 b/s",
+                            "StreamSize": "4764",
+                            "StreamSize_String": "4.65 KiB (100%)",
+                            "StreamSize_String1": "5 KiB",
+                            "StreamSize_String2": "4.7 KiB",
+                            "StreamSize_String3": "4.65 KiB",
+                            "StreamSize_String4": "4.652 KiB",
+                            "StreamSize_String5": "4.65 KiB (100%)",
+                            "StreamSize_Proportion": "1.00000",
+                            "File_Modified_Date": "2024-08-01 23:07:32 UTC",
+                            "File_Modified_Date_Local": "2024-08-01 19:07:32"
+                        },
+                        {
+                            "@type": "Text",
+                            "Count": "304",
+                            "StreamCount": "1",
+                            "StreamKind": "Text",
+                            "StreamKind_String": "Text",
+                            "StreamKindID": "0",
+                            "Format": "SubRip",
+                            "Format_String": "SubRip",
+                            "Format_Url": "http://ffdshow.sourceforge.net/tikiwiki/tiki-index.php?page=Getting+ffdshow",
+                            "Format_Commercial": "SubRip",
+                            "Duration": "544.000",
+                            "Duration_String": "9 min 4 s",
+                            "Duration_String1": "9 min 4 s 0 ms",
+                            "Duration_String2": "9 min 4 s",
+                            "Duration_String3": "00:09:04.000",
+                            "Duration_String5": "00:09:04.000",
+                            "Duration_Start": "23.000",
+                            "Duration_Start_String": "23 s 0 ms",
+                            "Duration_Start_String1": "23 s 0 ms",
+                            "Duration_Start_String2": "23 s 0 ms",
+                            "Duration_Start_String3": "00:00:23.000",
+                            "Duration_Start_String5": "00:00:23.000",
+                            "Duration_End": "567.000",
+                            "Duration_End_String": "9 min 27 s",
+                            "Duration_End_String1": "9 min 27 s 0 ms",
+                            "Duration_End_String2": "9 min 27 s",
+                            "Duration_End_String3": "00:09:27.000",
+                            "Duration_End_String5": "00:09:27.000",
+                            "Compression_Mode": "Lossless",
+                            "Compression_Mode_String": "Lossless",
+                            "Events_Total": "75",
+                            "Events_MinDuration": "1.000",
+                            "Events_MinDuration_String": "1 s 0 ms",
+                            "Events_MinDuration_String1": "1 s 0 ms",
+                            "Events_MinDuration_String2": "1 s 0 ms",
+                            "Events_MinDuration_String3": "00:00:01.000",
+                            "Events_MinDuration_String5": "00:00:01.000",
+                            "Lines_Count": "82",
+                            "Lines_MaxCountPerEvent": "2"
+                        }
+                    ]
+                }
+            }
+        ],
+        "master_manifests": [
+            {
+                "name": "Confidence QC 1080p",
+                "id": "HLS-1080",
+                "url": "https://localhost/tearsofsteel/v1/hls/tears-of-steel_sdr_1080p24_BITC/tears-of-steel.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bitrate_kb": 5000,
+                "codec": "h264",
+                "color_range": "sdr",
+                "frame_rate": "24000/1000",
+                "drop_frame": false
+            },
+            {
+                "name": "Proxy 720p",
+                "id": "HLS-720",
+                "url": "https://localhost/tearsofsteel/v1/hls/tears-of-steel_sdr_720p24_BITC/tears-of-steel.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bitrate_kb": 2000,
+                "codec": "h264",
+                "color_range": "sdr",
+                "frame_rate": "24000/1000",
+                "drop_frame": false
+            }
+        ],
+        "media_tracks": {
+            "video": [
+                {
+                    "name": "tearsofsteel_4k.mov",
+                    "source_id": "V1",
+                    "manifest_ids": [
+                        "HLS-720",
+                        "HLS-1080"
+                    ],
+                    "visual_reference": [
+                        {
+                            "type": "thumbnails",
+                            "url": "https://localhost/tearsofsteel/v1/thumbnails/thumbnails.vtt"
+                        }
+                    ],
+                    "analysis": [
+                        {
+                            "name": "Program Scenes",
+                            "type": "events",
+                            "visualization": "marker",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/program-scenes.vtt"
+                        },
+                        {
+                            "name": "Points of Interest",
+                            "type": "events",
+                            "visualization": "point",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/program-poi.vtt"
+                        },
+                        {
+                            "name": "Bit Rate",
+                            "type": "chart",
+                            "visualization": "line",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/tearsofsteel_4k_2-SEC.vtt"
+                        }
+                    ]
+                }
+            ],
+            "audio": [
+                {
+                    "name": "tearsofsteel_4k.mov (English 2.0)",
+                    "source_id": "V1",
+                    "program_name": "EN_20",
+                    "channel_layout": "L R",
+                    "language": "en",
+                    "channels": [
+                        {
+                            "channel_order": "L",
+                            "program_name": "EN_20_L",
+                            "visual_reference": [
+                                {
+                                    "type": "waveform",
+                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_L.vtt"
+                                }
+                            ]
+                        },
+                        {
+                            "channel_order": "R",
+                            "program_name": "EN_20_R",
+                            "visual_reference": [
+                                {
+                                    "type": "waveform",
+                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_R.vtt"
+                                }
+                            ]
+                        }
+                    ],
+                    "analysis": [
+                        {
+                            "name": "Dialog",
+                            "type": "events",
+                            "visualization": "marker",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/dialog.vtt"
+                        },
+                        {
+                            "name": "Scene Changes",
+                            "type": "events",
+                            "visualization": "point",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/audio-poi.vtt"
+                        },
+                        {
+                            "name": "RMS Levels",
+                            "type": "chart",
+                            "visualization": "line",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/tears-of-steel_sdr_BITC_EN_20_RMS_2-SEC.vtt"
+                        },
+                        {
+                            "name": "EBU R128 M",
+                            "type": "chart",
+                            "visualization": "bar",
+                            "y_min": -100,
+                            "y_max": 0,
+                            "scale": "linear",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/tears-of-steel_sdr_BITC_EN_20_R128_2-SEC.vtt"
+                        },
+                        {
+                            "name": "Overall RMS Level",
+                            "type": "chart",
+                            "visualization": "led",
+                            "y_min": -100,
+                            "y_max": 0,
+                            "scale": "linear",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/tears-of-steel_sdr_BITC_EN_20_RMS_2-SEC.vtt"
+                        }
+                    ]
+                },
+                {
+                    "name": "Surround-TOS_DVDSURROUND-Dolby%205.1.ac3 (English 5.1)",
+                    "source_id": "A1",
+                    "program_name": "EN_51",
+                    "channel_layout": "L R C LFE LS RS",
+                    "language": "en",
+                    "channels": [
+                        {
+                            "channel_order": "L",
+                            "program_name": "EN_51_L",
+                            "visual_reference": [
+                                {
+                                    "type": "waveform",
+                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_L.vtt"
+                                }
+                            ]
+                        },
+                        {
+                            "channel_order": "R",
+                            "program_name": "EN_51_R",
+                            "visual_reference": [
+                                {
+                                    "type": "waveform",
+                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_R.vtt"
+                                }
+                            ]
+                        },
+                        {
+                            "channel_order": "C",
+                            "program_name": "EN_51_C",
+                            "visual_reference": [
+                                {
+                                    "type": "waveform",
+                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_C.vtt"
+                                }
+                            ]
+                        },
+                        {
+                            "channel_order": "LFE",
+                            "program_name": "EN_51_LFE",
+                            "visual_reference": [
+                                {
+                                    "type": "waveform",
+                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_LFE.vtt"
+                                }
+                            ]
+                        },
+                        {
+                            "channel_order": "LS",
+                            "program_name": "EN_51_LS",
+                            "visual_reference": [
+                                {
+                                    "type": "waveform",
+                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_LS.vtt"
+                                }
+                            ]
+                        },
+                        {
+                            "channel_order": "RS",
+                            "program_name": "EN_51_RS",
+                            "visual_reference": [
+                                {
+                                    "type": "waveform",
+                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_RS.vtt"
+                                }
+                            ]
+                        }
+                    ],
+                    "analysis": [
+                        {
+                            "name": "Dialog",
+                            "type": "events",
+                            "visualization": "marker",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/dialog.vtt"
+                        },
+                        {
+                            "name": "Scene Changes",
+                            "type": "events",
+                            "visualization": "point",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/audio-poi.vtt"
+                        },
+                        {
+                            "name": "RMS Levels",
+                            "type": "chart",
+                            "visualization": "line",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/tears-of-steel_sdr_BITC_EN_51_RMS_2-SEC.vtt"
+                        },
+                        {
+                            "name": "EBU R128 M",
+                            "type": "chart",
+                            "visualization": "bar",
+                            "y_min": -100,
+                            "y_max": 0,
+                            "scale": "linear",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/tears-of-steel_sdr_BITC_EN_51_R128_2-SEC.vtt"
+                        },
+                        {
+                            "name": "Overall RMS Level",
+                            "type": "chart",
+                            "visualization": "led",
+                            "y_min": -100,
+                            "y_max": 0,
+                            "scale": "linear",
+                            "url": "https://localhost/tearsofsteel/v1/analysis/tears-of-steel_sdr_BITC_EN_51_RMS_2-SEC.vtt"
+                        }
+                    ]
+                }
+            ],
+            "text": [
+                {
+                    "name": "TOS-en.srt (English Subtitles)",
+                    "source_id": "T1",
+                    "program_name": "English Subtitles",
+                    "language": "en"
+                }
+            ]
+        },
+        "presentation": {
+            "layout": {},
+            "info_tabs": [
+                {
+                    "name": "OMDb Title Metadata",
+                    "type": "json",
+                    "visualization": "json_tree",
+                    "data": {
+                        "omdb": {
+                            "Title": "Tears of Steel",
+                            "Year": "2012",
+                            "Rated": "N/A",
+                            "Released": "26 Sep 2012",
+                            "Runtime": "12 min",
+                            "Genre": "Short, Sci-Fi",
+                            "Director": "Ian Hubert",
+                            "Writer": "Ian Hubert",
+                            "Actors": "Derek de Lint, Sergio Hasselbaink, Rogier Schippers",
+                            "Plot": "He just wanted to be awesome in space.",
+                            "Language": "English",
+                            "Country": "Netherlands",
+                            "Awards": "N/A",
+                            "Poster": "https://m.media-amazon.com/images/M/MV5BMTczMzQzNDE5NV5BMl5BanBnXkFtZTcwNzYwMzQ1OA@@._V1_SX300.jpg",
+                            "Ratings": [
+                                {
+                                    "Source": "Internet Movie Database",
+                                    "Value": "5.5/10"
+                                }
+                            ],
+                            "Metascore": "N/A",
+                            "imdbRating": "5.5",
+                            "imdbVotes": "1,486",
+                            "imdbID": "tt2285752",
+                            "Type": "movie",
+                            "DVD": "21 Apr 2017",
+                            "BoxOffice": "N/A",
+                            "Production": "N/A",
+                            "Website": "N/A",
+                            "Response": "True"
+                        }
+                    }
+                }
+            ],
+            "player_configuration": {},
+            "timeline_configuration": {}
+        }
+    }
+}
