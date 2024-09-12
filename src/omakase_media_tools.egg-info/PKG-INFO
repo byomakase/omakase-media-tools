@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: omakase-media-tools
-Version: 0.1.14
+Version: 0.1.16
 Summary: A CLI utility and samples for creation of sample media and temporal metadata tracks for use with the Omakase Player framework
 Author-email: ByOmakase <info@byomakase.org>
 License: Apache License 2.0
@@ -16,10 +16,16 @@ Requires-Dist: ffmpeg_bitrate_stats
 
 # Omakase Media Tools Utility
 
-This PIP package provides a command line utility for use with the reference implementation of
-the [Omakase Player](https://player.byomakase.org/) open source project.
+This PIP package contains the `omt` utility and sample media reference for use with
+the [Omakase Player](https://player.byomakase.org/)
+and [Omakase Reference Player](https://github.com/byomakase/omakase-reference-player) open source projects.
 
-The Python utility `omt.py` is used for creating Omakase Player temporal metadata tracks and OMP player json files.
+The sample media is provided to demonstrate the capabilities of the Omakase Player framework and to bootstrap small POC
+projects. The sample media reference and `omt` utility are provided as-is and are not intended for use in production
+environments.
+
+The Python `omt.py` utility and documentation can be used to create your own sample media, temporal metadata tracks and OMP player
+JSON for use with the Omakase Player framework and the Omakase Reference Player.
 
 The utility can create an OMP player json file from a template, source media and HLS media:
 
@@ -446,6 +452,7 @@ ___
 
 - [Omakase Player Project Page](https://player.byomakase.org/)
 - [Omakase Player GitHub Repository](http://github.com/byomakase/omakase-player)
+- [Omakase Reference Player GitHub Repository](https://github.com/byomakase/omakase-reference-player)
 - [ffmpeg Project Page](https://ffmpeg.org)
 - [ffmpeg-bitrate-stats GitHub Repository](https://github.com/slhck/ffmpeg-bitrate-stats)
 - [audiowaveform Project Page](https://www.bbc.co.uk/opensource/projects/audiowaveform)

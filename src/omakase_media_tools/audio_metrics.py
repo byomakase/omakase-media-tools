@@ -70,7 +70,7 @@ def parse_ffmpeg_metrics_file(file_path):
             value4_count[interval_start] += 1
     except FileNotFoundError:
         print(f"Error: ffempeg metrics file not found at {file}")
-    except Exception as e:    
+    except Exception as e:
         print(f"An unexpected error occurred with ffempeg metrics file {file} :: {str(e)}")
 
     # Calculate averages
@@ -87,7 +87,7 @@ def parse_ffmpeg_metrics_file(file_path):
 def create_vtt_file(input_file_path, output_file_path, omp_measurement='', omp_comment=''):
     """Create an OMP 1.0 VTT file from parsed data in temp file."""
     parsed_data = parse_ffmpeg_metrics_file(input_file_path)
-    try: 
+    try:
         with open(output_file_path, 'w') as output_file:
             # Write the initial lines
             output_file.write("WEBVTT\n\n")
@@ -109,7 +109,7 @@ def create_vtt_file(input_file_path, output_file_path, omp_measurement='', omp_c
                 output_file.write(f"{value:.3f}{omp_decoration}\n\n")
     except FileNotFoundError:
         print(f"Error: VTT output file not found at {output_file}")
-    except Exception as e:    
+    except Exception as e:
         print(f"An unexpected error occurred with VTT output file {output_file} :: {str(e)}")
 
 
@@ -126,7 +126,7 @@ def generate_audio_metrics(source_audio_file_path, vtt_directory='', samples_per
             print(f"Error: OMT does not have permissions to create directory {vtt_directory}")
             print("Change folder permissions or target folder and try again!")
             return
-        except Exception as e:    
+        except Exception as e:
             print(f"An unexpected error occurred creating directory {vtt_directory} :: {str(e)}")
             return
     # Generate EBU R128 metrics from ametadata filter and convert ffmpeg output to an OMP VTT 1.0 file
@@ -189,7 +189,7 @@ def generate_ebur128_metrics(source_audio_file_path, vtt_directory=''):
     except PermissionError:
         print(f"Error: OMT does not have permissions to remove ffmpeg metrics directory {ffmpeg_metrics_file_path}")
         print("Folder will remain in place and must be removed manually.")
-    except Exception as e:    
+    except Exception as e:
         print(f"An unexpected error occurred removing ffmpeg metrics directory {ffmpeg_metrics_file_path} :: {str(e)}")
         print("Folder will remain in place and must be removed manually.")
 
@@ -247,7 +247,7 @@ def generate_rms_level_metrics(source_audio_file_path, vtt_directory=''):
     except PermissionError:
         print(f"Error: OMT does not have permissions to remove ffmpeg metrics directory {ffmpeg_metrics_file_path}")
         print("Folder will remain in place and must be removed manually.")
-    except Exception as e:    
+    except Exception as e:
         print(f"An unexpected error occurred removing ffmpeg metrics directory {ffmpeg_metrics_file_path} :: {str(e)}")
         print("Folder will remain in place and must be removed manually.")
 
@@ -272,7 +272,7 @@ def create_audio_metrics(args: Namespace):
         generate_audio_metrics(args.input, args.output)
     elif os.path.isdir(args.input):
         for entry in os.scandir(args.input):
-            if entry.name.endswith('.wav') | entry.name.endswith('.aac'):
+            if entry.name.endswith('.wav') | entry.name.endswith('.aac') | entry.name.endswith('.mp4'):
                 generate_audio_metrics(entry.path, args.output)
     else:
         print(f"Input {args.input} is not a valid file or directory.")

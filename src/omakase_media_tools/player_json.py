@@ -534,7 +534,7 @@ def add_presentation(player_json: dict, template: dict) -> dict:
     player_json["data"]["presentation"]["player_configuration"] = {}
     player_json["data"]["presentation"]["timeline_configuration"] = {}
 
-    if not "src" in template["sources"]["metadata"][0]:
+    if "src" not in template["sources"]["metadata"][0]:
         return player_json
 
     metadata_path = template["sources"]["metadata"][0]["src"]
@@ -680,7 +680,7 @@ def create_output_dir_structure(template) -> bool:
 def add_output_defaults(template) -> bool:
     # Either the player json filename or the root directory of the output must be specified.
     if ("player_json" not in template.get("output", {})) & ("root_dir" not in template.get("output", {})):
-        print(f"Error: Template must include either \".output.root_dir\" or \".output.player_json\"")
+        print("Error: Template must include either \".output.root_dir\" or \".output.player_json\"")
         return False
 
     if "player_json" not in template.get("output", {}):

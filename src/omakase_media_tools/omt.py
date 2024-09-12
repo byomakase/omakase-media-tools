@@ -3,7 +3,6 @@
 
 import argparse
 
-from omakase_media_tools.file_log.logger import setup_ffmpeg_logger, ffmpeg_error
 from omakase_media_tools.audio_metrics import setup_audio_metrics_args
 from omakase_media_tools.player_json import setup_player_json_args
 from omakase_media_tools.thumbnails import setup_thumbnails_args

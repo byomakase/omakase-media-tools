@@ -17,6 +17,7 @@ src/omakase_media_tools.egg-info/dependency_links.txt
 src/omakase_media_tools.egg-info/entry_points.txt
 src/omakase_media_tools.egg-info/requires.txt
 src/omakase_media_tools.egg-info/top_level.txt
+src/omakase_media_tools/docs/dolby_hybrik_job.md
 src/omakase_media_tools/docs/mediaconvert_job.md
 src/omakase_media_tools/docs/omakase_player_hls_media.md
 src/omakase_media_tools/docs/omakase_player_json.md
@@ -37,5 +38,6 @@ src/omakase_media_tools/media/tears-of-steel/thumbnails/tearsofsteel_4k00002.jpg
 src/omakase_media_tools/media/tears-of-steel/thumbnails/thumbnails.vtt
 src/omakase_media_tools/media/tears-of-steel/waveforms/tears-of-steel_EN_20_L.vtt
 src/omakase_media_tools/media/tears-of-steel/waveforms/tears-of-steel_EN_20_R.vtt
+src/omakase_media_tools/mediaconvert/tears-of-steel.m3u8
 src/omakase_media_tools/mediaconvert/tears-of-steel_sdr_24_BITC.json
 src/omakase_media_tools/mediaconvert/tears-of-steel_sdr_24_BITC_by-channels.json

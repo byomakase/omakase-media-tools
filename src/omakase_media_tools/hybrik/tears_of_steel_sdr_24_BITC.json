@@ -1,0 +1,686 @@
+{
+    "definitions": {
+        "descriptor": "tears_of_steel_24fps",
+        "source_path": "s3://your-source-bucket/stems/blender/tears-of-steel",
+        "source_filename": "tearsofsteel_4k.mov",
+        "audio_filename": "Surround-TOS_DVDSURROUND-Dolby%205.1.ac3",
+        "subtitle_filename": "TOS-en.srt",
+        "destination_path": "s3://your-output-bucket/outputs/blender/tears-of-steel/hybrik/{{descriptor}}",
+        "segment_duration": 6
+    },
+    "name": "{{descriptor}}: {{source_filename}}",
+    "payload": {
+        "elements": [
+            {
+                "uid": "source_file",
+                "kind": "source",
+                "payload": {
+                    "kind": "asset_complex",
+                    "payload": {
+                        "asset_versions": [
+                            {
+                                "version_uid": "audio_video",
+                                "asset_components": [
+                                    {
+                                        "component_uid": "audio_video",
+                                        "kind": "name",
+                                        "name": "{{source_filename}}",
+                                        "location": {
+                                            "storage_provider": "s3",
+                                            "path": "{{source_path}}"
+                                        },
+                                        "contents": [
+                                            {
+                                                "kind": "video"
+                                            },
+                                            {
+                                                "kind": "audio",
+                                                "map": [
+                                                    {
+                                                        "input": {
+                                                            "track": 0
+                                                        },
+                                                        "output": {
+                                                            "track": 0
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "component_uid": "audio",
+                                        "kind": "name",
+                                        "name": "{{audio_filename}}",
+                                        "location": {
+                                            "storage_provider": "s3",
+                                            "path": "{{source_path}}"
+                                        },
+                                        "contents": [
+                                            {
+                                                "kind": "audio",
+                                                "map": [
+                                                    {
+                                                        "input": {
+                                                            "track": 0
+                                                        },
+                                                        "output": {
+                                                            "track": 1
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "kind": "name",
+                                        "component_uid": "captions",
+                                        "name": "{{subtitle_filename}}",
+                                        "location": {
+                                            "storage_provider": "s3",
+                                            "path": "{{source_path}}"
+                                        },
+                                        "contents": [
+                                            {
+                                                "kind": "subtitle",
+                                                "payload": {
+                                                    "format": "srt",
+                                                    "language": "eng"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "uid": "segment_script_task",
+                "kind": "script",
+                "task": {
+                    "retry_method": "fail"
+                },
+                "payload": {
+                    "kind": "job_modifier",
+                    "payload": {
+                        "modifiers": [
+                            {
+                                "kind": "transcode_auto_split",
+                                "target_element_uid": "transcode_all_renditions",
+                                "mode": "smart"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "uid": "transcode_all_renditions",
+                "kind": "transcode",
+                "payload": {
+                    "location": {
+                        "storage_provider": "s3",
+                        "path": "{{destination_path}}/mp4s"
+                    },
+                    "targets": [
+                        {
+                            "processing_group_ids": [
+                                "hls_720p"
+                            ],
+                            "file_pattern": "{source_basename}_720p24{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "mp4"
+                            },
+                            "video": {
+                                "codec": "h264",
+                                "bitrate_mode": "cbr",
+                                "use_scene_detection": false,
+                                "bitrate_kb": 2000,
+                                "vbv_buffer_size_kb": 2000,
+                                "profile": "high",
+                                "level": "3.1",
+                                "height": 720,
+                                "width": 1280,
+                                "par": "1:1",
+                                "layer_affinities": [
+                                    "audio_high"
+                                ],
+                                "filters": [
+                                    {
+                                        "kind": "print_timecode",
+                                        "payload": {
+                                            "x": "(w-text_w)/2",
+                                            "y": "(h/6)",
+                                            "font": "sans",
+                                            "font_color": "white",
+                                            "background_color": "black",
+                                            "font_size": 48,
+                                            "timecode_kind": "timecode_auto",
+                                            "timecode_source": "auto"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_1080p24{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "video": {
+                                "codec": "h264",
+                                "bitrate_mode": "cbr",
+                                "use_scene_detection": false,
+                                "bitrate_kb": 5000,
+                                "vbv_buffer_size_kb": 5000,
+                                "profile": "high",
+                                "level": "3.1",
+                                "height": 1080,
+                                "width": 1920,
+                                "par": "1:1",
+                                "layer_affinities": [
+                                    "audio_high"
+                                ],
+                                "filters": [
+                                    {
+                                        "kind": "print_timecode",
+                                        "payload": {
+                                            "x": "(w-text_w)/2",
+                                            "y": "(h/6)",
+                                            "font": "sans",
+                                            "font_color": "white",
+                                            "background_color": "black",
+                                            "font_size": 48,
+                                            "timecode_kind": "timecode_auto",
+                                            "timecode_source": "auto"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_720p",
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_20{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "English",
+                                    "source": [
+                                        {
+                                            "track": 0
+                                        }
+                                    ],
+                                    "track_name": "EN_20"
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_720p",
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_20_L{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "English",
+                                    "source": [
+                                        {
+                                            "track": 0,
+                                            "channel": 0
+                                        },
+                                        {
+                                            "track": 0,
+                                            "channel": 0
+                                        }
+                                    ],
+                                    "track_name": "EN_20_L"
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_720p",
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_20_R{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "English",
+                                    "source": [
+                                        {
+                                            "track": 0,
+                                            "channel": 1
+                                        },
+                                        {
+                                            "track": 0,
+                                            "channel": 1
+                                        }
+                                    ],
+                                    "track_name": "EN_20_R"
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_51{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 6,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 320,
+                                    "layer_id": "audio_high",
+                                    "language": "english",
+                                    "source": [
+                                        {
+                                            "track": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_51_L{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "english",
+                                    "source": [
+                                        {
+                                            "track": 1,
+                                            "channel": 0
+                                        },
+                                        {
+                                            "track": 1,
+                                            "channel": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_51_R{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "english",
+                                    "source": [
+                                        {
+                                            "track": 1,
+                                            "channel": 1
+                                        },
+                                        {
+                                            "track": 1,
+                                            "channel": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_51_C{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "english",
+                                    "source": [
+                                        {
+                                            "track": 1,
+                                            "channel": 2
+                                        },
+                                        {
+                                            "track": 1,
+                                            "channel": 2
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_51_LFE{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "english",
+                                    "source": [
+                                        {
+                                            "track": 1,
+                                            "channel": 3
+                                        },
+                                        {
+                                            "track": 1,
+                                            "channel": 3
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_51_LS{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "english",
+                                    "source": [
+                                        {
+                                            "track": 1,
+                                            "channel": 4
+                                        },
+                                        {
+                                            "track": 1,
+                                            "channel": 4
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_51_RS{default_extension}",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "fmp4",
+                                "segment_duration_sec": "{{segment_duration}}"
+                            },
+                            "audio": [
+                                {
+                                    "channels": 2,
+                                    "codec": "aac_lc",
+                                    "sample_rate": 48000,
+                                    "bitrate_kb": 128,
+                                    "layer_id": "audio_high",
+                                    "language": "english",
+                                    "source": [
+                                        {
+                                            "track": 1,
+                                            "channel": 5
+                                        },
+                                        {
+                                            "track": 1,
+                                            "channel": 5
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ],
+                            "file_pattern": "{source_basename}_EN_SUBS.vtt",
+                            "existing_files": "replace",
+                            "container": {
+                                "kind": "webvtt",
+                                "segment_duration_sec": "3600"
+                            },
+                            "subtitle": [
+                                {
+                                    "kind": "webvtt",
+                                    "language": "eng",
+                                    "webvtt_options": {
+                                        "cue_numbering": false
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "uid": "hls_single_fmp4_720p",
+                "task": {
+                    "extended": {
+                        "start_payload_filter": {
+                            "processing_group_ids": [
+                                "hls_720p"
+                            ]
+                        }
+                    },
+                    "name": "package_720p"
+                },
+                "kind": "package",
+                "payload": {
+                    "uid": "main_manifest",
+                    "kind": "hls",
+                    "location": {
+                        "storage_provider": "s3",
+                        "path": "{{destination_path}}/tears-of-steel_sdr_720p24_BITC"
+                    },
+                    "file_pattern": "{source_basename}.m3u8",
+                    "segmentation_mode": "fmp4",
+                    "segment_duration_sec": "{{segment_duration}}",
+                    "force_original_media": false,
+                    "media_location": {
+                        "storage_provider": "s3",
+                        "path": "{{destination_path}}/tears-of-steel_sdr_720p24_BITC",
+                        "attributes": [
+                            {
+                                "name": "ContentType",
+                                "value": "application/x-mpegURL"
+                            }
+                        ]
+                    },
+                    "media_file_pattern": "{source_basename}.fmp4",
+                    "hls": {
+                        "version": 7,
+                        "media_playlist_location": {
+                            "storage_provider": "s3",
+                            "path": "{{destination_path}}/tears-of-steel_sdr_720p24_BITC",
+                            "attributes": [
+                                {
+                                    "name": "ContentType",
+                                    "value": "application/x-mpegURL"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                "uid": "hls_single_fmp4_1080p",
+                "task": {
+                    "extended": {
+                        "start_payload_filter": {
+                            "processing_group_ids": [
+                                "hls_1080p"
+                            ]
+                        }
+                    },
+                    "name": "package_1080p"
+                },
+                "kind": "package",
+                "payload": {
+                    "uid": "main_manifest",
+                    "kind": "hls",
+                    "location": {
+                        "storage_provider": "s3",
+                        "path": "{{destination_path}}/tears-of-steel_sdr_1080p24_BITC"
+                    },
+                    "file_pattern": "{source_basename}.m3u8",
+                    "segmentation_mode": "fmp4",
+                    "segment_duration_sec": "{{segment_duration}}",
+                    "force_original_media": false,
+                    "media_location": {
+                        "storage_provider": "s3",
+                        "path": "{{destination_path}}/tears-of-steel_sdr_1080p24_BITC",
+                        "attributes": [
+                            {
+                                "name": "ContentType",
+                                "value": "application/x-mpegURL"
+                            }
+                        ]
+                    },
+                    "media_file_pattern": "{source_basename}.fmp4",
+                    "hls": {
+                        "version": 7,
+                        "media_playlist_location": {
+                            "storage_provider": "s3",
+                            "path": "{{destination_path}}/tears-of-steel_sdr_1080p24_BITC",
+                            "attributes": [
+                                {
+                                    "name": "ContentType",
+                                    "value": "application/x-mpegURL"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        ],
+        "connections": [
+            {
+                "from": [
+                    {
+                        "element": "source_file"
+                    }
+                ],
+                "to": {
+                    "success": [
+                        {
+                            "element": "segment_script_task"
+                        }
+                    ]
+                }
+            },
+            {
+                "from": [
+                    {
+                        "element": "segment_script_task"
+                    }
+                ],
+                "to": {
+                    "success": [
+                        {
+                            "element": "transcode_all_renditions"
+                        }
+                    ]
+                }
+            },
+            {
+                "from": [
+                    {
+                        "element": "transcode_all_renditions"
+                    }
+                ],
+                "to": {
+                    "success": [
+                        {
+                            "element": "hls_single_fmp4_1080p"
+                        },
+                        {
+                            "element": "hls_single_fmp4_720p"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

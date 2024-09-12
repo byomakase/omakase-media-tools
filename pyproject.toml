@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "omakase-media-tools"
-version = "0.1.14"
+version = "0.1.16"
 description = "A CLI utility and samples for creation of sample media and temporal metadata tracks for use with the Omakase Player framework"
 readme = "README_PYPI.md"
 requires-python = ">=3.6"

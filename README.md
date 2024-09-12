@@ -1,18 +1,15 @@
 # Omakase Player Media Tools and Sample Media Reference
 
-This repository contains a the `omt` utility and sample media reference for use with the reference implementation of
-the [Omakase Player](https://player.byomakase.org/) open source project.
+This repository contains the `omt` utility and sample media reference for use with
+the [Omakase Player](https://player.byomakase.org/)
+and [Omakase Reference Player](https://github.com/byomakase/omakase-reference-player) open source projects.
 
 The sample media is provided to demonstrate the capabilities of the Omakase Player framework and to bootstrap small POC
-projects. The sample media reference and `omt` utility are provided as-is and are not intended to be used in a
-production
+projects. The sample media reference and `omt` utility are provided as-is and are not intended for use in production
 environments.
 
-The `omt` utility and documentation can be used for the creation of your own sample media, temporal metadata
-tracks and OMP player json for use with the Omakase Player framework.
-
-The reference implementation of the reference player can be found in GitHub
-at [omakase-reference-player](https://github.com/byomakase/omakase-reference-player).
+The `omt` utility and documentation can be used to create your own sample media, temporal metadata tracks and OMP player
+JSON for use with the Omakase Player framework and the Omakase Reference Player.
 
 # Contents
 
@@ -21,6 +18,7 @@ at [omakase-reference-player](https://github.com/byomakase/omakase-reference-pla
 - [Omakase Player HLS Media](#omakase-player-hls-media)
 - [Omakase Player JSON](#omakase-player-json)
 - [MediaConvert Job](#mediaconvert-job)
+- [Dolby Hybrik Job](#dolby-hybrik-job)
 - [Command Line Utility](#command-line-utility)
     - [Player JSON Generator](#player-json-generator)
     - [Thumbnail Generator](#thumbnail-generator)
@@ -144,6 +142,20 @@ mezzanine media for use with the Omakase Player framework.
 The job template is provided as a JSON file that can be imported into an AWS MediaConvert job and is annotated on the
 page above with comments to help you generate your own media.
 
+# [Dolby Hybrik Job](/src/omakase_media_tools/docs/dolby_hybrik_job.md)
+
+___
+(Further detailed documentation can be found
+here: [Dolby Hybrik Job](src/omakase_media_tools/docs/dolby_hybrik_job.md).)
+
+Dolby Hybrik was also used to transcode the _Tears of Steel_ mezzanine media into the two HLS ABR ladders.
+
+The Dolby Hybrik job JSON used is provided as an example on how to transcode the _Tears of Steel_ mezzanine media for
+use with the Omakase Player framework.
+
+The job JSON provided can be imported into Hybrik and is annotated on the page above with comments to help you generate
+your own media.
+
 # [Command Line Utility](src/omakase_media_tools/docs/omt.md)
 
 ___
@@ -215,7 +227,7 @@ ___
 
 - [Omakase Player Project Page](https://player.byomakase.org/)
 - [Omakase Player GitHub Repository](http://github.com/byomakase/omakase-player)
-- [Omakase Reference Player GitHub Repository](https://github.com/byomakase/omakase-reference-player
+- [Omakase Reference Player GitHub Repository](https://github.com/byomakase/omakase-reference-player)
 - [Tears of Steel Project Page](http://mango.blender.org/)
 - [Tears of Steel Media Download Page](https://mango.blender.org/download/)
 - [ffmpeg Project Page](https://ffmpeg.org)

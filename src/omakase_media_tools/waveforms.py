@@ -79,7 +79,7 @@ def generate_audio_waveform(source_audio_file_path, vtt_file_path='', samples_pe
             print(f"An unexpected error occurred creating vtt file path {vtt_file_path} :: {str(e)}")
             return
 
-    if source_audio_file_path.endswith('.aac'):
+    if source_audio_file_path.endswith('.aac') | source_audio_file_path.endswith('.mp4'):
         wav_audio_file_path = create_wav_from_aac(source_audio_file_path)
     else:
         wav_audio_file_path = source_audio_file_path
@@ -201,7 +201,7 @@ def create_waveforms(args: Namespace):
         generate_audio_waveform(args.input, args.output, 1)
     elif os.path.isdir(args.input):
         for entry in os.scandir(args.input):
-            if entry.name.endswith('.wav') | entry.name.endswith('.aac'):
+            if entry.name.endswith('.wav') | entry.name.endswith('.aac') | entry.name.endswith('.mp4'):
                 generate_audio_waveform(entry.path, args.output, 1)
     else:
         print(f"Input {args.input} is not a valid file or directory.")

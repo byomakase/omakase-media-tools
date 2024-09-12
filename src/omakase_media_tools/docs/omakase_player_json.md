@@ -1,15 +1,14 @@
 # Omakase Player JSON
 
 The sample media reference, and its ABR ladders, are referenced in the Omakase Player JSON file, which is documented
-on the Omakase Player GitHub repository available
-here: [Omakase Player GitHub Repository](http://github.com/byomakase/omakase-player).
+in the Omakase Reference Player GitHub repository available
+here: [Omakase Reference Player GitHub Repository](https://github.com/byomakase/omakase-reference-player).
 
-The documentation on the Omakase Player GitHub should serve as your primary reference for the JSON file format used by
-the Omakase Player.
+The documentation in the [Omakase Reference Player GitHub Repository](https://github.com/byomakase/omakase-reference-player)
+should serve as your primary reference for the JSON file format used by the Omakase Reference Player.
 
-This document highlights some key points, however, to illustrate how ABR ladders you create with AWS MediaConvert, and
-the temporal metadata tracks generated with the `omt.py` CLI utility from this repository, are referenced in the Omakase
-Player JSON file.
+This document highlights key locations in the Omakase Player JSON file which reference the ABR ladders
+and temporal metadata tracks.
 
 Throughout this document, the Omakase Player JSON file is referred to as the `player json`.
 
