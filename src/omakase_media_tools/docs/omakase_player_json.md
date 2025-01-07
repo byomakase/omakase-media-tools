@@ -23,8 +23,15 @@ Omakase Player `player json` in the `master_manifests` array as shown below:
 
 ```json
 {
-    "security_token": "tbd",
-    "data": {
+   "version": "2.0",
+   "session": {
+       "services": {
+           "media_authentication": {
+               "type": "none"
+           }
+       }
+   },
+   "data": {
         "source_info": [
             ...
         ],
@@ -47,11 +54,11 @@ Omakase Player `player json` in the `master_manifests` array as shown below:
         ],
         "media_tracks": [
             ...
-        ],
-        "presentation": [
-            ...
         ]
-    }
+    },
+    "presentation": [
+        ...
+    ]
 }
 ```
 
@@ -63,7 +70,14 @@ below.
 
 ```json
 {
-    "security_token": "tbd",
+    "version": "2.0",
+    "session": {
+        "services": {
+            "media_authentication": {
+                "type": "none"
+            }
+        }
+    },
     "data": {
         "source_info": [
             ...
@@ -104,11 +118,11 @@ below.
             "text": [
                 ...
             ]
-        },
-        "presentation": [
-            ...
-        ]
-    }
+        }
+    },
+    "presentation": [
+        ...
+    ]
 }
 ```
 
@@ -130,7 +144,14 @@ This is where the audio waveform created with `omt waveforms` is referenced in t
 
 ```json
 {
-    "security_token": "tbd",
+    "version": "2.0",
+    "session": {
+        "services": {
+            "media_authentication": {
+                "type": "none"
+            }
+        }
+    },
     "data": {
         "source_info": [
             ...
@@ -175,11 +196,11 @@ This is where the audio waveform created with `omt waveforms` is referenced in t
             "text": [
                 ...
             ]
-        },
-        "presentation": [
-            ...
-        ]
-    }
+        }
+    },
+    "presentation": [
+        ...
+    ]
 }
 ```
 
@@ -190,7 +211,14 @@ This is where the audio metric tracks created with `omt audio-metrics` are refer
 
 ```json
 {
-    "security_token": "tbd",
+    "version": "2.0",
+    "session": {
+        "services": {
+            "media_authentication": {
+                "type": "none"
+            }
+        }
+    },
     "data": {
         "source_info": [
             ...
@@ -228,10 +256,10 @@ This is where the audio metric tracks created with `omt audio-metrics` are refer
             "text": [
                 ...
             ]
-        },
-        "presentation": [
-            ...
-        ]
-    }
+        }
+    },
+    "presentation": [
+        ...
+    ]
 }
 ```

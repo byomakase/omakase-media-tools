@@ -7,8 +7,18 @@ from pathlib import Path
 from omakase_media_tools.mediainfo import get_mediainfo_json
 
 
-def add_security_token(player_json: dict, template: dict) -> dict:
-    player_json["security_token"] = "TBD"
+def add_version(player_json: dict, template: dict) -> dict:
+    player_json["version"] = "2.0"
+    return player_json
+
+def add_session(player_json: dict, template: dict) -> dict:
+    player_json["session"] = {
+        "services": {
+            "media_authentication": {
+                "type": "none"
+            }
+        }
+    }
     return player_json
 
 
@@ -529,10 +539,11 @@ def load_metadata(metadata_file: str) -> dict:
 
 def add_presentation(player_json: dict, template: dict) -> dict:
     # Create an empty presentation object
-    player_json["data"]["presentation"]["layout"] = {}
-    player_json["data"]["presentation"]["info_tabs"] = []
-    player_json["data"]["presentation"]["player_configuration"] = {}
-    player_json["data"]["presentation"]["timeline_configuration"] = {}
+    player_json["presentation"] = {}
+    player_json["presentation"]["layout"] = {}
+    player_json["presentation"]["info_tabs"] = []
+    player_json["presentation"]["timeline_configuration"] = {}
+    player_json["presentation"]["segmentation_actions"] = []
 
     if "src" not in template["sources"]["metadata"][0]:
         return player_json
@@ -555,7 +566,7 @@ def add_presentation(player_json: dict, template: dict) -> dict:
         }
     }
 
-    player_json["data"]["presentation"]["info_tabs"].append(new_info_tab)
+    player_json["presentation"]["info_tabs"].append(new_info_tab)
 
     return player_json
 
@@ -563,15 +574,17 @@ def add_presentation(player_json: dict, template: dict) -> dict:
 def create_player_json_from_template(template: dict) -> dict:
     player_json = {}
 
+    # Add a version stub
+    add_version(player_json, template)
+    
     # Add a security token stub
-    add_security_token(player_json, template)
+    add_session(player_json, template)
 
     player_json["data"] = {
         "source_info": [],
         "media_info": [],
         "master_manifests": [],
-        "media_tracks": {},
-        "presentation": {}
+        "media_tracks": {}
     }
 
     # Add source info
