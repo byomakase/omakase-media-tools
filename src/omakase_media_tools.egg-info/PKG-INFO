@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: omakase-media-tools
-Version: 0.1.17
+Version: 0.1.18
 Summary: A CLI utility and samples for creation of sample media and temporal metadata tracks for use with the Omakase Player framework
 Author-email: ByOmakase <info@byomakase.org>
 License: Apache License 2.0
