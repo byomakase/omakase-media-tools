@@ -333,7 +333,10 @@ def find_audio_track_channel_waveform(program_name: str, template: dict) -> str:
 
 def add_audio_track_channel_waveforms(track_entry: dict, template: dict) -> dict:
     # Get a list of audio channels for the current sound field by parsing all m3u8 master manifests
-    channels = get_audio_track_channel_list(track_entry, template)
+    # channels = get_audio_track_channel_list(track_entry, template)
+
+    # Get a list of audio channels for the current sound field by looking for the channel waveform files.
+    channels = get_audio_waveform_channel_list(track_entry, template)
 
     for channel_id, program_name in channels.items():
 
@@ -342,21 +345,50 @@ def add_audio_track_channel_waveforms(track_entry: dict, template: dict) -> dict
 
         # If a waveform file was found, add it to the track entry
         if filepath:
-            channel = {
-                "program_name": program_name,
-                "channel_order": channel_id,
-                "visual_reference": [
-                    {
-                        "type": "waveform",
-                        "url": template["output"]["root_url"] + filepath
-                    }
-                ]
+            visual_reference_entry = {
+                    "type": "waveform",
+                    "url": template["output"]["root_url"] + filepath,
+                    "channel": channel_id
             }
-            track_entry["channels"].append(channel)
+            track_entry["visual_reference"].append(visual_reference_entry)
             track_entry["channel_layout"] = " ".join(channels.keys())
 
     return track_entry
 
+def get_audio_waveform_channel_list(track_entry: dict, template: dict) -> dict:
+    """
+    For the audio track passed, find the waveform files in the waveforms directory that match the program name.
+    :param track_entry: a dict representing the current audio track entry in the player json.
+    :param template: the omt manifest loaded as a dictionary.
+    :return: a dictionary of { channel_id: program_name } pairs.
+    """
+    waveforms_dir = template["output"]["waveforms_dir"]
+    channel_list = {}
+
+    # Walk through the directory tree
+    for dirpath, dirnames, filenames in os.walk(waveforms_dir):
+        for file_name in filenames:
+            try:
+                # Program name as EN_20_L or EN_51_LFE as examples
+                match = re.search(r'([A-Za-z]{2}_\d{2}_[A-Za-z]{1,3})', file_name)
+                if match:
+                    program_name = match.group(1)
+                    # Channel for current sound field?
+                    if track_entry["program_name"] in program_name:
+                        parts = program_name.split('_')
+                        # Only use program names for the channels, which should be "EN" "20" "L".
+                        #   If just two parts, then it's the program name for the sound field
+                        if len(parts) == 3:
+                            channel_id = parts[-1]
+                            channel_list[channel_id] = program_name
+            except Exception as e:
+                print(f"An unexpected error occurred with waveform file{file_name} :: {str(e)}")
+
+    # Make sure the channels are in the right channel order.
+    desired_order = ['L', 'R', 'C', 'LFE', 'LS', 'RS']
+    sorted_channel_list = {k: v for k, v in sorted(channel_list.items(), key=lambda kv: desired_order.index(kv[0]))}
+
+    return sorted_channel_list
 
 def get_audio_track_channel_list(track_entry: dict, template: dict) -> dict:
     """
@@ -467,7 +499,7 @@ def add_audio_track(player_json: dict, template: dict) -> dict:
             "program_name": track["program_name"],
             "channel_layout": "",
             "language": "eng",
-            "channels": [],
+            "visual_reference": [],
             "analysis": []
         }
 

@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: omakase-media-tools
-Version: 0.1.18
+Version: 0.1.19
 Summary: A CLI utility and samples for creation of sample media and temporal metadata tracks for use with the Omakase Player framework
 Author-email: ByOmakase <info@byomakase.org>
 License: Apache License 2.0
@@ -13,6 +13,7 @@ Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: ffmpeg-python
 Requires-Dist: ffmpeg_bitrate_stats
+Dynamic: license-file
 
 # Omakase Media Tools Utility
 

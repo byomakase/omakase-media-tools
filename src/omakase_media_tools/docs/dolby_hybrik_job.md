@@ -148,8 +148,7 @@ section of the Hybrik job JSON
 **PLEASE NOTE:** The naming of the output files is important as the `omt` uses the naming convention to identify the
 different tracks when generating the OMP Player JSON with the `omt player-json` command.
 
-In the example below, the `EN_20` audio track is the English 2.0 sound field, whereas the `EN_20_L` sound field is the
-English 2.0 left channel mono track used by the Omakase Player to solo the left channel of the sound field.
+In the example below, the `EN_20` audio track is the English 2.0 sound field.
 
 ```json
 {
@@ -157,15 +156,7 @@ English 2.0 left channel mono track used by the Omakase Player to solo the left 
         { "file_pattern": "{source_basename}_720p24{default_extension}" ... },
         { "file_pattern": "{source_basename}_1080p24{default_extension}" ... },
         { "file_pattern": "{source_basename}_EN_20{default_extension}" ... },
-        { "file_pattern": "{source_basename}_EN_20_L{default_extension}" ... },
-        { "file_pattern": "{source_basename}_EN_20_R{default_extension}" ... },
         { "file_pattern": "{source_basename}_EN_51{default_extension}" ... },
-        { "file_pattern": "{source_basename}_EN_51_L{default_extension}" ... },
-        { "file_pattern": "{source_basename}_EN_51_R{default_extension}" ... },
-        { "file_pattern": "{source_basename}_EN_51_C{default_extension}" ... },
-        { "file_pattern": "{source_basename}_EN_51_LFE{default_extension}" ... },
-        { "file_pattern": "{source_basename}_EN_51_LS{default_extension}" ... },
-        { "file_pattern": "{source_basename}_EN_51_RS{default_extension}" ... },
         { "file_pattern": "{source_basename}_EN_SUBS.vtt" ... }
     ]
 }
@@ -179,23 +170,13 @@ The `hls_single_fmp4_720p` ABR ladder contains the following tracks:
 
 - 720p24 video track at 2000 kbps
 - English 2.0 sound field
-- English 2.0 Left Channel as a dual-mono audio track
-- English 2.0 Right Channel as a dual-mono audio track
 - English Subtitles as a VTT track
 
 The `hls_single_fmp4_1080p` ABR ladder contains the following tracks:
 
 - 1080p24 video track at 5000 kbps
 - English 2.0 sound field
-- English 2.0 Left Channel as a dual-mono audio track
-- English 2.0 Right Channel as a dual-mono audio track
 - English 5.1 sound field
-- English 5.1 Left Channel as a dual-mono audio track
-- English 5.1 Right Channel as a dual-mono audio track
-- English 5.1 Center Channel as a dual-mono audio track
-- English 5.1 LFE Channel as a dual-mono audio track
-- English 5.1 Ls Channel as a dual-mono audio track
-- English 5.1 Rs Channel as a dual-mono audio track
 - English Subtitles as a VTT track
 
 The packaging of the media outputs into the ABR ladders is defined in the following locations in the Hybrik job JSON:
@@ -268,25 +249,14 @@ examples are basic and simple specifications to provide a simple working example
 
 ## Audio Specification
 
-The audio track specifications are also simple and straightforward, although the creation of dual-mono audio tracks
-requires some further explanation.
-
-In order to solo individual channels within Omakase Player, each channel of a sound field is isolated and duplicated to
-form a dual-mono 2.0 audio track, that is the channel is duplicated to both the left and right channels of the audio
-track.
-
-By selecting a dual-mono audio track in the Omakase Player, the user can solo the individual channels of the sound
-fields. This also allows the creation of an audio waveform for each channel as well as an audio metric visualization by
-channel.
+The audio track specifications are also simple and straightforward.
 
 **IMPORTANT:** As mentioned above, the filename used for the audio tracks is used to map and identify the audio track
 to the in the Omakase Player JSON file and associate the audio wave form and audio metric analysis tracks with the audio
 track.
 
-For example, the `EN_20` audio track is the English 2.0 sound field, whereas the `EN_20_L` sound field is the
-English 2.0 left channel mono track used by the Omakase Player to solo the left channel of the sound field. When `EN_20`
-and `EN_20_L` are appended to the filename, this allows generation of the OMP Player JSON with the `omt player-json`
-command.
+For example, the `EN_20` audio track is the English 2.0 sound field. When `EN_20` is appended to the filename,
+this allows generation of the OMP Player JSON with the `omt player-json` command.
 
 ## Subtitle Track Specification
 
@@ -309,23 +279,15 @@ subtitle streams and associate them with the media tracks in the OMP Player JSON
 For each of the audio streams in the HLS manifest, the `NAME` attribute must be set to the value appended to the stream
 filename. For example, the `EN_20` audio stream must have the `NAME` attribute set to `EN_20`.
 
-In addition, the audio channels should be listed in channel order, i.e., `L R C LFE LS RS`.
-
 As an example, a snippet of the original Hybrik generated HLS manifest is shown below:
 ```text
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_high",LANGUAGE="en",NAME="English_7",AUTOSELECT=YES,DEFAULT=NO,CHANNELS="2",URI="tearsofsteel_4k_EN_20_R.m3u8"
 #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_high",LANGUAGE="en",NAME="English",AUTOSELECT=YES,DEFAULT=YES,CHANNELS="2",URI="tearsofsteel_4k_EN_20.m3u8"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_high",LANGUAGE="en",NAME="English_6",AUTOSELECT=YES,DEFAULT=NO,CHANNELS="2",URI="tearsofsteel_4k_EN_20_L.m3u8"
-
 #EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English",DEFAULT=NO,AUTOSELECT=YES,FORCED=NO,LANGUAGE="en",URI="tearsofsteel_4k_EN_SUBS.m3u8"
 ```
 
 After manual post-processing, the HLS manifest should look like this:
 ```text
 #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_high",NAME="EN_20",LANGUAGE="en",AUTOSELECT=YES,DEFAULT=YES,CHANNELS="2",URI="tearsofsteel_4k_EN_20.m3u8"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_high",NAME="EN_20_L",LANGUAGE="en",AUTOSELECT=YES,DEFAULT=NO,CHANNELS="2",URI="tearsofsteel_4k_EN_20_L.m3u8"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_high",NAME="EN_20_R",LANGUAGE="en",AUTOSELECT=YES,DEFAULT=NO,CHANNELS="2",URI="tearsofsteel_4k_EN_20_R.m3u8"
-
 #EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English Subtitles",DEFAULT=NO,AUTOSELECT=YES,FORCED=NO,LANGUAGE="en",URI="tearsofsteel_4k_EN_SUBS.m3u8"
 ```
 

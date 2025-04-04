@@ -1,5 +1,12 @@
 {
-    "security_token": "tbd",
+    "version": "2.0",
+    "session": {
+        "services": {
+            "media_authentication": {
+                "type": "none"
+            }
+        }
+    },
     "data": {
         "source_info": [
             {
@@ -559,26 +566,16 @@
                     "program_name": "EN_20",
                     "channel_layout": "L R",
                     "language": "en",
-                    "channels": [
+                    "visual_reference": [
                         {
-                            "channel_order": "L",
-                            "program_name": "EN_20_L",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_L.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_L.vtt",
+                            "channel": "L"
                         },
                         {
-                            "channel_order": "R",
-                            "program_name": "EN_20_R",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_R.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_R.vtt",
+                            "channel": "R"
                         }
                     ],
                     "analysis": [
@@ -626,66 +623,36 @@
                     "program_name": "EN_51",
                     "channel_layout": "L R C LFE LS RS",
                     "language": "en",
-                    "channels": [
+                    "visual_reference": [
                         {
-                            "channel_order": "L",
-                            "program_name": "EN_51_L",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_L.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_L.vtt",
+                            "channel": "L"
                         },
                         {
-                            "channel_order": "R",
-                            "program_name": "EN_51_R",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_R.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_R.vtt",
+                            "channel": "R"
                         },
                         {
-                            "channel_order": "C",
-                            "program_name": "EN_51_C",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_C.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_C.vtt",
+                            "channel": "C"
                         },
                         {
-                            "channel_order": "LFE",
-                            "program_name": "EN_51_LFE",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_LFE.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_LFE.vtt",
+                            "channel": "LFE"
                         },
                         {
-                            "channel_order": "LS",
-                            "program_name": "EN_51_LS",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_LS.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_LS.vtt",
+                            "channel": "LS"
                         },
                         {
-                            "channel_order": "RS",
-                            "program_name": "EN_51_RS",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_RS.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_51_RS.vtt",
+                            "channel": "RS"
                         }
                     ],
                     "analysis": [

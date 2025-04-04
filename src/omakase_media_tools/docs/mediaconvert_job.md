@@ -53,15 +53,7 @@ each channel in the output (to be explained further below).
         "Inputs": [
             "AudioSelectors": {
                 "EN 2.0": { ... },
-                "EN 2.0 L": { ... },
-                "EN 2.0 R": { ... },
-                "EN 5.1":  { ... },
-                "EN 5.1 L":  { ... },
-                "EN 5.1 R":  { ... },
-                "EN 5.1 C":  { ... },
-                "EN 5.1 LFE":  { ... },
-                "EN 5.1 LS":  { ... },
-                "EN 5.1 RS":  { ... }
+                "EN 5.1":  { ... }
             }
         ]
     }
@@ -139,23 +131,13 @@ The `Apple HLS 720p Proxy` ABR ladder contains the following tracks:
 
 - 720p24 video track at 2000 kbps
 - English 2.0 sound field
-- English 2.0 Left Channel as a dual-mono audio track
-- English 2.0 Right Channel as a dual-mono audio track
 - English Subtitles as a VTT track
 
 The `Apple HLS 1080p w 5.1` ABR ladder contains the following tracks:
 
 - 1080p24 video track at 5000 kbps
 - English 2.0 sound field
-- English 2.0 Left Channel as a dual-mono audio track
-- English 2.0 Right Channel as a dual-mono audio track
 - English 5.1 sound field
-- English 5.1 Left Channel as a dual-mono audio track
-- English 5.1 Right Channel as a dual-mono audio track
-- English 5.1 Center Channel as a dual-mono audio track
-- English 5.1 LFE Channel as a dual-mono audio track
-- English 5.1 Ls Channel as a dual-mono audio track
-- English 5.1 Rs Channel as a dual-mono audio track
 - English Subtitles as a VTT track
 
 ```json
@@ -169,8 +151,6 @@ The `Apple HLS 1080p w 5.1` ABR ladder contains the following tracks:
                 "Outputs": [
                     {"NameModifier":  "_720p24_2000" ... },
                     {"NameModifier":  "_EN_20" ... },
-                    {"NameModifier":  "_EN_20_L" ... },
-                    {"NameModifier":  "_EN_20_R" ... },
                     {"NameModifier":  "_EN_SUBS"  ... }
                 ],
                 "OutputGroupSettings": { ... }
@@ -180,15 +160,7 @@ The `Apple HLS 1080p w 5.1` ABR ladder contains the following tracks:
                 "Outputs": [
                     {"NameModifier":  "_1080p24_5000" ... },
                     {"NameModifier":  "_EN_20" ... },
-                    {"NameModifier":  "_EN_20_L" ... },
-                    {"NameModifier":  "_EN_20_R" ... },
                     {"NameModifier":  "_EN_51" ... },
-                    {"NameModifier":  "_EN_51_L" ... },
-                    {"NameModifier":  "_EN_51_R" ... },
-                    {"NameModifier":  "_EN_51_C" ... },
-                    {"NameModifier":  "_EN_51_LFE" ... },
-                    {"NameModifier":  "_EN_51_LS" ... },
-                    {"NameModifier":  "_EN_51_RS" ... },
                     {"NameModifier":  "_EN_SUBS"  ... }
                  ],
                 "OutputGroupSettings": { ... }
@@ -222,16 +194,7 @@ examples are basic and simple specifications to provide a simple working example
 
 ## Audio Specification
 
-The audio track specifications are also simple and straightforward, although the creation of dual-mono audio tracks
-requires some further explanation.
-
-In order to solo individual channels within Omakase Player, each channel of a sound field is isolated and duplicated to
-form a dual-mono 2.0 audio track, that is the channel is duplicated to both the left and right channels of the audio
-track.
-
-By selecting a dual-mono audio track in the Omakase Player, the user can solo the individual channels of the sound
-fields. This also allows the creation of an audio waveform for each channel as well as an audio metric visualization by
-channel.
+The audio track specifications are also simple and straightforward.
 
 **IMPORTANT:** The `StreamName` setting in the `AudioDescriptions` section is used to map and identify the audio track
 to the in the Omakase Player JSON file and associate the audio wave form and audio metric analysis tracks with the audio

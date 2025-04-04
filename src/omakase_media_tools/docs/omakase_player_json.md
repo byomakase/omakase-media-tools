@@ -135,11 +135,6 @@ specified as the `StreamName` in the AWS MediaConvert job settings. Please see t
 Job](/src/omakase_media_tools/docs/mediaconvert_job.md) documentation in this repository for more information where this
 is explained in detail.
 
-Below the reference to the full English 2.0 audio track is the reference to the left channel dual-mono audio track from
-the HLS ABR ladder, which is `"program_name": "EN_20_L"` in the `player_json`.
-
-(This allows individual sound field channels to be solo'ed and visualized in the Omakase Player.)
-
 This is where the audio waveform created with `omt waveforms` is referenced in the `player_json`.
 
 ```json
@@ -173,26 +168,23 @@ This is where the audio waveform created with `omt waveforms` is referenced in t
                     "program_name": "EN_20",
                     "channel_layout": "L R",
                     "language": "en",
-                    "channels": [
+                    "visual_reference": [
                         {
-                            "channel_order": "L",
-                            "program_name": "EN_20_L",
-                            "visual_reference": [
-                                {
-                                    "type": "waveform",
-                                    "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_L.vtt"
-                                }
-                            ]
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_L.vtt",
+                            "channel": "L"
                         },
                         {
-                            ...
+                            "type": "waveform",
+                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_R.vtt",
+                            "channel": "R"
                         }
                     ],
                     "analysis": [
                         ...
                     ]
                 }
-            ]
+            ],
             "text": [
                 ...
             ]
@@ -240,7 +232,7 @@ This is where the audio metric tracks created with `omt audio-metrics` are refer
                     "program_name": "EN_20",
                     "channel_layout": "L R",
                     "language": "en",
-                    "channels": [
+                    "visual_reference": [
                         ...
                     ],
                     "analysis": [
