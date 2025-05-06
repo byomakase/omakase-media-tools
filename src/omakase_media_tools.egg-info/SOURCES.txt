@@ -40,4 +40,3 @@ src/omakase_media_tools/media/tears-of-steel/waveforms/tears-of-steel_EN_20_L.vt
 src/omakase_media_tools/media/tears-of-steel/waveforms/tears-of-steel_EN_20_R.vtt
 src/omakase_media_tools/mediaconvert/tears-of-steel.m3u8
 src/omakase_media_tools/mediaconvert/tears-of-steel_sdr_24_BITC.json
-src/omakase_media_tools/mediaconvert/tears-of-steel_sdr_24_BITC_by-channels.json

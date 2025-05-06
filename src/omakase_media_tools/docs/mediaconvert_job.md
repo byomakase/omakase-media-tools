@@ -7,9 +7,6 @@ MediaConvert job to create your own media.
 The MediaConvert job used to build the _Tears of Steel_ sample media is a JSON file that is available in the repository
 here: `/src/omakase_media_tools/mediaconvert/tears-of-steel_sdr_24_BITC.json`.
 
-Another version of the MediaConvert job template with more advanced audio channel mapping is available here:
-`/src/omakase_media_tools/mediaconvert/tears-of-steel_sdr_24_BITC_by-channels.json`.
-
 The AWS MediaConvert User Guide is available
 here: [AWS MediaConvert User Guide](https://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html).
 
