@@ -19,110 +19,83 @@ and can help remove some of the complexity.
 # Video Track Reference
 
 The url of the top-level HLS manifest of each ABR ladder you create with AWS MediaConvert should be referenced in the
-Omakase Player `player json` in the `master_manifests` array as shown below:
+Omakase Player `player json` under `media` in the `main` array as shown below:
 
 ```json
 {
-   "version": "2.0",
-   "session": {
-       "services": {
-           "media_authentication": {
-               "type": "none"
-           }
-       }
-   },
-   "data": {
-        "source_info": [
-            ...
-        ],
-        "media_info": [
-            ...
-        ],
-        "master_manifests": [
+    "version": "3.0",
+    "sources": [
+        ...
+    ],
+    "media": {
+        "main": [
             {
                 "name": "Confidence QC 1080p",
+                "type": "hls",
                 "id": "HLS-1080",
-                "url": "https://localhost/tearsofsteel/v1/hls/tears-of-steel_sdr_1080p24_BITC/tears-of-steel.m3u8",
-                "width": 1920,
-                "height": 1080,
-                "bitrate_kb": 5000,
-                "codec": "h264",
+                "url": "https://localhost/content/tears_of_steel/hls/tears-of-steel_sdr_1080p24_BITC/tears-of-steel.m3u8",
+                "color_range": "sdr",
+                "frame_rate": "24000/1000",
+                "drop_frame": false
+            },
+            {
+                "name": "Proxy 720p",
+                "type": "hls",
+                "id": "HLS-720",
+                "url": "https://localhost/content/tears_of_steel/hls/tears-of-steel_sdr_720p24_BITC/tears-of-steel.m3u8",
                 "color_range": "sdr",
                 "frame_rate": "24000/1000",
                 "drop_frame": false
             }
-        ],
-        "media_tracks": [
-            ...
         ]
     },
-    "presentation": [
+    "presentation": {
         ...
-    ]
+    }
 }
 ```
 
 ## Video Thumbnail Track and Video Analysis Track References
 
 The thumbnail track created with `omt thumbnails` utility command and the video analysis track created with
-`omt video-bitrate` utility command are referenced in the `player json` in the `media_tracks` `video` section as shown
-below.
+`omt video-bitrate` utility command are referenced in the `player json` as shown below:
 
 ```json
 {
-    "version": "2.0",
-    "session": {
-        "services": {
-            "media_authentication": {
-                "type": "none"
-            }
-        }
+    "version": "3.0",
+    "sources": [
+        ...
+    ],
+    "media": {
+        "main": [
+            ...
+        ]
     },
-    "data": {
-        "source_info": [
-            ...
-        ],
-        "media_info": [
-            ...
-        ],
-        "master_manifests": [
-            ...
-        ],
-        "media_tracks": {
-            "video": [
+    "presentation": {
+        "timeline": {
+            "tracks": [
                 {
+                    "id": "VT1",
+                    "type": "video",
                     "name": "tearsofsteel_4k.mov",
                     "source_id": "V1",
-                    "manifest_ids": [
-                        ...
-                    ],
                     "visual_reference": [
                         {
                             "type": "thumbnails",
-                            "url": "https://localhost/tearsofsteel/v1/thumbnails/thumbnails.vtt"
+                            "url": "https://localhost/content/tears_of_steel/thumbnails/thumbnails.vtt"
                         }
                     ],
                     "analysis": [
-                        {
-                            "name": "Bit Rate",
-                            "type": "chart",
-                            "visualization": "line",
-                            "url": "https://localhost/tearsofsteel/v1/analysis/tearsofsteel_4k_2-SEC.vtt"
-                        }
+                        ...
                     ]
-                }
-            ],
-            "audio": [
-                ...
-            ],
-            "text": [
+                },
                 ...
             ]
-        }
-    },
-    "presentation": [
-        ...
-    ]
+        },
+        "info_tabs": [
+            ...
+        ]
+    }
 }
 ```
 
@@ -130,7 +103,7 @@ below.
 
 References to audio tracks in the `player_json` are shown below.
 
-The `"program_name": "EN_20"` is the name of the full English 2.0 audio track in the ABR ladder HLS manifest. This is
+The `"media_id": "EN_20"` is the name of the full English 2.0 audio track in the ABR ladder HLS manifest. This is
 specified as the `StreamName` in the AWS MediaConvert job settings. Please see the [MediaConvert
 Job](/src/omakase_media_tools/docs/mediaconvert_job.md) documentation in this repository for more information where this
 is explained in detail.
@@ -139,60 +112,50 @@ This is where the audio waveform created with `omt waveforms` is referenced in t
 
 ```json
 {
-    "version": "2.0",
-    "session": {
-        "services": {
-            "media_authentication": {
-                "type": "none"
-            }
-        }
+    "version": "3.0",
+    "sources": [
+        ...
+    ],
+    "media": {
+        "main": [
+            ...
+        ]
     },
-    "data": {
-        "source_info": [
-            ...
-        ],
-        "media_info": [
-            ...
-        ],
-        "master_manifests": [
-            ...
-        ],
-        "media_tracks": {
-            "video": [
-                ...
-            ],
-            "audio": [
+    "presentation": {
+        "timeline": {
+            "tracks": [
+                ...,
                 {
+                    "id": "AT1",
+                    "type": "audio",
                     "name": "tearsofsteel_4k.mov (English 2.0)",
                     "source_id": "V1",
-                    "program_name": "EN_20",
+                    "media_id": "EN_20",
                     "channel_layout": "L R",
                     "language": "en",
                     "visual_reference": [
                         {
                             "type": "waveform",
-                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_L.vtt",
+                            "url": "https://localhost/content/tears_of_steel/waveforms/tears-of-steel_EN_20_L.vtt",
                             "channel": "L"
                         },
                         {
                             "type": "waveform",
-                            "url": "https://localhost/tearsofsteel/v1/waveforms/tears-of-steel_EN_20_R.vtt",
+                            "url": "https://localhost/content/tears_of_steel/waveforms/tears-of-steel_EN_20_R.vtt",
                             "channel": "R"
                         }
                     ],
                     "analysis": [
                         ...
                     ]
-                }
-            ],
-            "text": [
+                },
                 ...
             ]
-        }
-    },
-    "presentation": [
-        ...
-    ]
+        },
+        "info_tabs": [
+            ...
+        ]
+    }
 }
 ```
 
@@ -203,33 +166,25 @@ This is where the audio metric tracks created with `omt audio-metrics` are refer
 
 ```json
 {
-    "version": "2.0",
-    "session": {
-        "services": {
-            "media_authentication": {
-                "type": "none"
-            }
-        }
+    "version": "3.0",
+    "sources": [
+        ...
+    ],
+    "media": {
+        "main": [
+            ...
+        ]
     },
-    "data": {
-        "source_info": [
-            ...
-        ],
-        "media_info": [
-            ...
-        ],
-        "master_manifests": [
-            ...
-        ],
-        "media_tracks": {
-            "video": [
-                ...
-            ],
-            "audio": [
+    "presentation": {
+        "timeline": {
+            "tracks": [
+                ...,
                 {
+                    "id": "AT1",
+                    "type": "audio",
                     "name": "tearsofsteel_4k.mov (English 2.0)",
                     "source_id": "V1",
-                    "program_name": "EN_20",
+                    "media_id": "EN_20",
                     "channel_layout": "L R",
                     "language": "en",
                     "visual_reference": [
@@ -237,21 +192,49 @@ This is where the audio metric tracks created with `omt audio-metrics` are refer
                     ],
                     "analysis": [
                         {
+                            "name": "Dialog",
+                            "type": "events",
+                            "visualization": "marker",
+                            "url": "https://localhost/content/tears_of_steel/analysis/dialog_audio_events_marker.vtt"
+                        },
+                        {
+                            "name": "Scene Changes",
+                            "type": "events",
+                            "visualization": "point",
+                            "url": "https://localhost/content/tears_of_steel/analysis/scene_changes_audio_events_point.vtt"
+                        },
+                        {
+                            "name": "EBU R128 M",
+                            "type": "chart",
+                            "visualization": "bar",
+                            "y_min": -100,
+                            "y_max": 0,
+                            "scale": "linear",
+                            "url": "https://localhost/content/tears_of_steel/analysis/tears-of-steel_sdr_BITC_EN_20_R128_2-SEC.vtt"
+                        },
+                        {
                             "name": "RMS Levels",
                             "type": "chart",
                             "visualization": "line",
-                            "url": "https://localhost/tearsofsteel/v1/analysis/tears-of-steel_sdr_BITC_EN_20_RMS_2-SEC.vtt"
+                            "url": "https://localhost/content/tears_of_steel/analysis/tears-of-steel_sdr_BITC_EN_20_RMS_2-SEC.vtt"
+                        },
+                        {
+                            "name": "Overall RMS Levels",
+                            "type": "chart",
+                            "visualization": "led",
+                            "y_min": -100,
+                            "y_max": 0,
+                            "scale": "linear",
+                            "url": "https://localhost/content/tears_of_steel/analysis/tears-of-steel_sdr_BITC_EN_20_RMS_2-SEC.vtt"
                         }
                     ]
-                }
-            ],
-            "text": [
+                },
                 ...
             ]
-        }
-    },
-    "presentation": [
-        ...
-    ]
+        },
+        "info_tabs": [
+            ...
+        ]
+    }
 }
 ```

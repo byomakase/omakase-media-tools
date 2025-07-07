@@ -18,7 +18,6 @@ JSON for use with the Omakase Player framework and the Omakase Reference Player.
 - [Omakase Player HLS Media](#omakase-player-hls-media)
 - [Omakase Player JSON](#omakase-player-json)
 - [MediaConvert Job](#mediaconvert-job)
-- [Dolby Hybrik Job](#dolby-hybrik-job)
 - [Command Line Utility](#command-line-utility)
     - [Player JSON Generator](#player-json-generator)
     - [Thumbnail Generator](#thumbnail-generator)
@@ -141,20 +140,6 @@ mezzanine media for use with the Omakase Player framework.
 
 The job template is provided as a JSON file that can be imported into an AWS MediaConvert job and is annotated on the
 page above with comments to help you generate your own media.
-
-# [Dolby Hybrik Job](/src/omakase_media_tools/docs/dolby_hybrik_job.md)
-
-___
-(Further detailed documentation can be found
-here: [Dolby Hybrik Job](src/omakase_media_tools/docs/dolby_hybrik_job.md).)
-
-Dolby Hybrik was also used to transcode the _Tears of Steel_ mezzanine media into the two HLS ABR ladders.
-
-The Dolby Hybrik job JSON used is provided as an example on how to transcode the _Tears of Steel_ mezzanine media for
-use with the Omakase Player framework.
-
-The job JSON provided can be imported into Hybrik and is annotated on the page above with comments to help you generate
-your own media.
 
 # [Command Line Utility](src/omakase_media_tools/docs/omt.md)
 

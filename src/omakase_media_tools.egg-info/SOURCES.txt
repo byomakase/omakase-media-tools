@@ -17,7 +17,6 @@ src/omakase_media_tools.egg-info/dependency_links.txt
 src/omakase_media_tools.egg-info/entry_points.txt
 src/omakase_media_tools.egg-info/requires.txt
 src/omakase_media_tools.egg-info/top_level.txt
-src/omakase_media_tools/docs/dolby_hybrik_job.md
 src/omakase_media_tools/docs/mediaconvert_job.md
 src/omakase_media_tools/docs/omakase_player_hls_media.md
 src/omakase_media_tools/docs/omakase_player_json.md
@@ -27,10 +26,10 @@ src/omakase_media_tools/file_log/__init__.py
 src/omakase_media_tools/file_log/logger.py
 src/omakase_media_tools/media/template.json
 src/omakase_media_tools/media/tears-of-steel/tears-of-steel_24fps.json
-src/omakase_media_tools/media/tears-of-steel/analysis/audio-poi.vtt
-src/omakase_media_tools/media/tears-of-steel/analysis/dialog.vtt
-src/omakase_media_tools/media/tears-of-steel/analysis/program-poi.vtt
-src/omakase_media_tools/media/tears-of-steel/analysis/program-scenes.vtt
+src/omakase_media_tools/media/tears-of-steel/analysis/dialog_audio_events_marker.vtt
+src/omakase_media_tools/media/tears-of-steel/analysis/points_of_interest_video_events_point.vtt
+src/omakase_media_tools/media/tears-of-steel/analysis/program_scenes_video_events_marker.vtt
+src/omakase_media_tools/media/tears-of-steel/analysis/scene_changes_audio_events_point.vtt
 src/omakase_media_tools/media/tears-of-steel/analysis/tears-of-steel_sdr_BITC_EN_20_R128_2-SEC.vtt
 src/omakase_media_tools/media/tears-of-steel/analysis/tears-of-steel_sdr_BITC_EN_20_RMS_2-SEC.vtt
 src/omakase_media_tools/media/tears-of-steel/analysis/tearsofsteel_4k_2-SEC.vtt

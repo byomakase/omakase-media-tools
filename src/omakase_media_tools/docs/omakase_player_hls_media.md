@@ -48,7 +48,7 @@ different scenes as program segments. This could be used to represent program se
 The metadata track was created manually for demonstration purposes.
 
 **Please Note:** An example can be found in the repository
-here: [/src/omakase_media_tools/media/tears-of-steel/analysis/program-scenes.vtt](/src/omakase_media_tools/media/tears-of-steel/analysis/program-scenes.vtt)
+here: [/src/omakase_media_tools/media/tears-of-steel/analysis/program-scenes.vtt](/media/tears-of-steel/analysis/program_scenes_video_events_marker.vtt)
 
 ## Video Points of Interest Metadata Track
 
@@ -58,7 +58,7 @@ example of an `event` metadata track of visualization type `point`.
 The metadata track was also created manually for demonstration purposes.
 
 **Please Note:** An example can be found in the repository
-here: [/src/omakase_media_tools/media/tears-of-steel/analysis/program-poi.vtt](/src/omakase_media_tools/media/tears-of-steel/analysis/program-poi.vtt)
+here: [/src/omakase_media_tools/media/tears-of-steel/analysis/program-poi.vtt](/media/tears-of-steel/analysis/points_of_interest_video_events_point.vtt)
 
 ## Video Bitrate Visualization
 
@@ -99,7 +99,7 @@ visualization on the timeline of when there is dialog present in the audio.
 The metadata track was also created manually for demonstration purposes.
 
 **Please Note:** An example can be found in the repository
-here: [/src/omakase_media_tools/media/tears-of-steel/analysis/dialog.vtt](/src/omakase_media_tools/media/tears-of-steel/analysis/dialog.vtt)
+here: [/src/omakase_media_tools/media/tears-of-steel/analysis/dialog.vtt](/media/tears-of-steel/analysis/dialog_audio_events_marker.vtt)
 
 ## Audio Program Scene Changes Metadata Track
 
@@ -112,7 +112,7 @@ for this sample media.
 The metadata track was created manually for demonstration purposes.
 
 **Please Note:** An example can be found in the repository
-here: [/src/omakase_media_tools/media/tears-of-steel/analysis/program-scenes.vtt](/src/omakase_media_tools/media/tears-of-steel/analysis/program-scenes.vtt)
+here: [/src/omakase_media_tools/media/tears-of-steel/analysis/program-scenes.vtt](/media/tears-of-steel/analysis/program_scenes_video_events_marker.vtt)
 
 ## Audio RMS Levels Metadata Track
 

@@ -36,19 +36,22 @@
                 {
                     "source_id": "V1",
                     "display_text": "English 2.0",
-                    "program_name": "EN_20"
+                    "media_id": "EN_20",
+                    "language": "en"
                 },
                 {
                     "source_id": "A1",
                     "display_text": "English 5.1",
-                    "program_name": "EN_51"
+                    "media_id": "EN_51",
+                    "language": "en"
                 }
             ],
             "text": [
                 {
                     "source_id": "T1",
                     "display_text": "English Subtitles",
-                    "program_name": "English Subtitles"
+                    "media_id": "English Subtitles",
+                    "language": "en"
                 }
             ]
         },

@@ -8,21 +8,13 @@ from omakase_media_tools.mediainfo import get_mediainfo_json
 
 
 def add_version(player_json: dict, template: dict) -> dict:
-    player_json["version"] = "2.0"
-    return player_json
+    player_json["version"] = "3.0"
 
-def add_session(player_json: dict, template: dict) -> dict:
-    player_json["session"] = {
-        "services": {
-            "media_authentication": {
-                "type": "none"
-            }
-        }
-    }
     return player_json
 
 
-def add_source_info(player_json: dict, template: dict) -> dict:
+def add_sources(player_json: dict, template: dict) -> dict:
+
     sources = template["sources"]["mezzanine"]
     for source in sources:
         base_source_name = os.path.basename(source["src"])
@@ -31,71 +23,57 @@ def add_source_info(player_json: dict, template: dict) -> dict:
         media_filepath = os.path.join(template["output"]["sources_dir"], source["src"])
         mediainfo = get_mediainfo_json(media_filepath)
 
-        media_entry = {"name": base_source_name, "id": source["id"], "format": media_format}
+        media_entry = {
+            "name": base_source_name,
+            "id": source["id"],
+            "info": {
+                "format": media_format
+            }
+        }
 
         # Video sources
         if source["id"].startswith("V") and mediainfo["media"]:
-            media_entry["bandwidth"] = mediainfo["media"]["track"][0]["OverallBitRate_String"]
-            media_entry["duration"] = float(mediainfo["media"]["track"][0]["Duration"])
-
-            # How many video tracks are present
-            video_count = mediainfo["media"]["track"][0]["VideoCount"]
-            media_entry["video_tracks"] = int(video_count)
-
-            # How many audio tracks are present
-            audio_tracks = mediainfo["media"]["track"][0]["AudioCount"]
-            media_entry["audio_tracks"] = int(audio_tracks)
-
-            # How many audio channels are present
-            channel_count = mediainfo["media"]["track"][0]["Audio_Channels_Total"]
-            media_entry["channel_count"] = int(channel_count)
+            media_entry["info"]["bandwidth"] = mediainfo["media"]["track"][0]["OverallBitRate_String"]
+            media_entry["info"]["duration"] = float(mediainfo["media"]["track"][0]["Duration"])
+            media_entry["info"]["video_tracks"] = int(mediainfo["media"]["track"][0]["VideoCount"])
+            media_entry["info"]["audio_tracks"] = int(mediainfo["media"]["track"][0]["AudioCount"])
+            media_entry["info"]["channel_count"] = int(mediainfo["media"]["track"][0]["Audio_Channels_Total"])
 
         # Audio sources
         elif source["id"].startswith("A") and mediainfo["media"]:
-            media_entry["sample_rate"] = mediainfo["media"]["track"][1]["SamplingRate_String"]
-            media_entry["duration"] = float(mediainfo["media"]["track"][0]["Duration"])
-
-            # How many audio tracks are present
-            audio_tracks = mediainfo["media"]["track"][0]["AudioCount"]
-            media_entry["audio_tracks"] = int(audio_tracks)
-
-            # How many audio channels are present
-            channel_count = mediainfo["media"]["track"][0]["Audio_Channels_Total"]
-            media_entry["channel_count"] = int(channel_count)
-
-            # Hardcoding English language for now
-            media_entry["language"] = "ENG"
+            media_entry["info"]["sample_rate"] = mediainfo["media"]["track"][1]["SamplingRate_String"]
+            media_entry["info"]["duration"] = float(mediainfo["media"]["track"][0]["Duration"])
+            media_entry["info"]["audio_tracks"] = int(mediainfo["media"]["track"][0]["AudioCount"])
+            media_entry["info"]["channel_count"] = int(mediainfo["media"]["track"][0]["Audio_Channels_Total"])
+            media_entry["info"]["language"] = "ENG"
 
         # Texted sources
         elif source["id"].startswith("T") and mediainfo["media"]:
-            media_entry["duration"] = mediainfo["media"]["track"][0]["Duration"]
+            media_entry["info"]["duration"] = mediainfo["media"]["track"][0]["Duration"]
+            media_entry["info"]["language"] = "ENG" # Hardcoding English for now
+            media_entry["info"]["usage"] = "subtitles" # Hardcoding subtitles for now
 
-            # Hardcoding English language for now
-            media_entry["language"] = "ENG"
+        player_json.setdefault("sources", []).append(media_entry)
 
-            # Hardcoding subtitles for usage for now
-            media_entry["usage"] = "subtitles"
-
-        player_json["data"]["source_info"].append(media_entry)
+    # Add media info
+    player_json = add_media_info(player_json, template)
 
     return player_json
 
 
 def add_media_info(player_json: dict, template: dict) -> dict:
-    sources = template["sources"]["mezzanine"]
-    for source in sources:
-        media_filepath = os.path.join(template["output"]["sources_dir"], source["src"])
+    sources_by_id = {src["id"]: src for src in player_json.get("sources", [])}
+    mezzanine_sources = template.get("sources", {}).get("mezzanine", [])
+    sources_dir = template.get("output", {}).get("sources_dir", "")
+
+    for mezzanine in mezzanine_sources:
+        media_filepath = os.path.join(sources_dir, mezzanine["src"])
         mediainfo = get_mediainfo_json(media_filepath)
 
-        media_entry = {"source_id": source["id"]}
-
-        if mediainfo["media"]:
-            track = mediainfo["media"]["track"]
-        else:
-            track = []
-        media_entry["general_properties"] = {"track": track}
-
-        player_json["data"]["media_info"].append(media_entry)
+        if mediainfo.get("media") and "track" in mediainfo["media"]:
+            source = sources_by_id.get(mezzanine["id"])
+            if source is not None:
+                source["metadata"] = {"track": mediainfo["media"]["track"]}
 
     return player_json
 
@@ -160,18 +138,20 @@ def parse_hls_manifest(master_manifest_path: str) -> dict:
         print(f"An unexpected error occurred with master manifest file {hls_manifest_file} :: {str(e)}")
 
 
-def add_master_manifest(player_json: dict, template: dict) -> dict:
+def add_media(player_json: dict, template: dict) -> dict:
     hls_sources = template["sources"]["hls"]
     hls_dir = template["output"]["hls_dir"]
 
     for hls_source in hls_sources:
         hls_dir_pathname = os.path.join(hls_dir, hls_source["src"])
 
+
         # Find the master manifest file in the HLS ladder directory
         m3u8_manifest_filename = find_master_m3u8_manifest(hls_dir_pathname)
 
         manifest_entry = {
             "name": hls_source["display_name"],
+            "type": "hls",
             "id": hls_source["id"],
             "url": template["output"]["root_url"] + m3u8_manifest_filename
         }
@@ -179,15 +159,11 @@ def add_master_manifest(player_json: dict, template: dict) -> dict:
         # Parse out just those values of interest from the master M3U8 manifest
         m3u8_manifest = parse_hls_manifest(m3u8_manifest_filename)
 
-        manifest_entry["width"] = m3u8_manifest["width"]
-        manifest_entry["height"] = m3u8_manifest["height"]
-        manifest_entry["bitrate_kb"] = m3u8_manifest["bitrate_kb"]
-        manifest_entry["codec"] = m3u8_manifest["codec"]
         manifest_entry["color_range"] = "sdr"
         manifest_entry["frame_rate"] = m3u8_manifest["frame_rate"]
         manifest_entry["drop_frame"] = False
 
-        player_json["data"]["master_manifests"].append(manifest_entry)
+        player_json.setdefault("media", {}).setdefault("main", []).append(manifest_entry)
 
     return player_json
 
@@ -287,61 +263,62 @@ def add_video_analysis_tracks(template: dict) -> list:
     return static_tracks + bitrate_tracks
 
 
-def add_video_track(player_json: dict, template: dict) -> dict:
-    for track in template["sources"]["tracks"]["video"]:
-        text_track_mezzanine = find_source_mezzanine(track["source_id"], template)
-        if not text_track_mezzanine:
+def add_presentation_timeline_video_track(player_json: dict, template: dict) -> dict:
+    tracks = template.get("sources", {}).get("tracks", {}).get("video", [])
+    root_url = template.get("output", {}).get("root_url", "")
+    thumbnails_path = find_video_track_thumbnails(template)
+    analysis = add_video_analysis_tracks(template)
+
+    timeline_tracks = player_json.setdefault("presentation", {}).setdefault("timeline", {}).setdefault("tracks", [])
+
+    for idx, track in enumerate(tracks, start=1):
+        video_track_mezzanine = find_source_mezzanine(track["source_id"], template)
+        if not video_track_mezzanine:
             continue
 
-        manifest_ids = []
-        for hls in template["sources"]["hls"]:
-            manifest_ids.append(hls["id"])
-
-        thumbnails_path = find_video_track_thumbnails(template)
-
-        visual_reference = [
-            {
-                "type": "thumbnails",
-                "url": template["output"]["root_url"] + thumbnails_path
-            }
-        ]
-
-        analysis = add_video_analysis_tracks(template)
-
         track_entry = {
-            "name": os.path.basename(text_track_mezzanine["src"]),
+            "id": f"VT{idx}",
+            "type": "video",
+            "name": os.path.basename(video_track_mezzanine["src"]),
             "source_id": track["source_id"],
-            "manifest_ids": manifest_ids,
-            "visual_reference": visual_reference,
+            "visual_reference": [
+                {
+                    "type": "thumbnails",
+                    "url": root_url + thumbnails_path
+                }
+            ],
             "analysis": analysis
         }
 
-        player_json["data"]["media_tracks"]["video"].append(track_entry)
+        timeline_tracks.append(track_entry)
 
     return player_json
 
-
-def find_audio_track_channel_waveform(program_name: str, template: dict) -> str:
+def find_audio_track_channel_waveform(media_id: str, template: dict) -> str:
     for filename in os.listdir(template["output"]["waveforms_dir"]):
         filepath = os.path.join(template["output"]["waveforms_dir"], filename)
 
-        if os.path.isfile(filepath) and filename.endswith(".vtt") and program_name in filename:
+        if (
+                os.path.isfile(filepath)
+                and filename.endswith(".vtt")
+                and re.search(rf"{re.escape(media_id)}(?=\.vtt$)", filename)
+        ):
             return filepath
 
     return ""
 
 
-def add_audio_track_channel_waveforms(track_entry: dict, template: dict) -> dict:
+def add_presentation_timeline_audio_track_channel_waveforms(track_entry: dict, template: dict) -> dict:
     # Get a list of audio channels for the current sound field by parsing all m3u8 master manifests
     # channels = get_audio_track_channel_list(track_entry, template)
 
     # Get a list of audio channels for the current sound field by looking for the channel waveform files.
-    channels = get_audio_waveform_channel_list(track_entry, template)
+    channels = get_presentation_timeline_audio_track_waveform_channel_list(track_entry, template)
 
-    for channel_id, program_name in channels.items():
+    for channel_id, media_id in channels.items():
 
         # Locate the waveform file for the current channel
-        filepath = find_audio_track_channel_waveform(program_name, template)
+        filepath = find_audio_track_channel_waveform(media_id, template)
 
         # If a waveform file was found, add it to the track entry
         if filepath:
@@ -355,12 +332,13 @@ def add_audio_track_channel_waveforms(track_entry: dict, template: dict) -> dict
 
     return track_entry
 
-def get_audio_waveform_channel_list(track_entry: dict, template: dict) -> dict:
+
+def get_presentation_timeline_audio_track_waveform_channel_list(track_entry: dict, template: dict) -> dict:
     """
     For the audio track passed, find the waveform files in the waveforms directory that match the program name.
-    :param track_entry: a dict representing the current audio track entry in the player json.
-    :param template: the omt manifest loaded as a dictionary.
-    :return: a dictionary of { channel_id: program_name } pairs.
+    :param track_entry: Dict representing the current audio track entry in the player JSON.
+    :param template: The omt manifest loaded as a dictionary.
+    :return: A dictionary of { channel_id: media_id } pairs.
     """
     waveforms_dir = template["output"]["waveforms_dir"]
     channel_list = {}
@@ -372,15 +350,15 @@ def get_audio_waveform_channel_list(track_entry: dict, template: dict) -> dict:
                 # Program name as EN_20_L or EN_51_LFE as examples
                 match = re.search(r'([A-Za-z]{2}_\d{2}_[A-Za-z]{1,3})', file_name)
                 if match:
-                    program_name = match.group(1)
+                    media_id = match.group(1)
                     # Channel for current sound field?
-                    if track_entry["program_name"] in program_name:
-                        parts = program_name.split('_')
+                    if track_entry["media_id"] in media_id:
+                        parts = media_id.split('_')
                         # Only use program names for the channels, which should be "EN" "20" "L".
                         #   If just two parts, then it's the program name for the sound field
                         if len(parts) == 3:
-                            channel_id = parts[-1]
-                            channel_list[channel_id] = program_name
+                            channel_id = parts[-1].upper()
+                            channel_list[channel_id] = media_id
             except Exception as e:
                 print(f"An unexpected error occurred with waveform file{file_name} :: {str(e)}")
 
@@ -390,14 +368,15 @@ def get_audio_waveform_channel_list(track_entry: dict, template: dict) -> dict:
 
     return sorted_channel_list
 
-def get_audio_track_channel_list(track_entry: dict, template: dict) -> dict:
+
+def get_presentation_timeline_audio_track_channel_list(track_entry: dict, template: dict) -> dict:
     """
     For each audio sound field, there may be a separate audio program for each channel in the ABR ladder.
     Search the m3u8 manifest file for each ABR ladder in the HLS directory and find audio programs that match
     the sound filed program name, but appended with a channel ID.
-    :param track_entry: a dict representing the current audio track entry in the player json.
-    :param template: the omt manifest loaded as a dictionary.
-    :return: a dictionary of { channel_id: program_name } pairs.
+    :param track_entry: dict representing the current audio track entry in the player JSON.
+    :param template: the omt manifest loaded as a dict.
+    :return: a dict of { channel_id: media_id } pairs.
     """
     hls_dir = template["output"]["hls_dir"]
     channel_list = {}
@@ -413,16 +392,16 @@ def get_audio_track_channel_list(track_entry: dict, template: dict) -> dict:
                         for line in m3u8_manifest_file.readlines():
                             if line.startswith("#EXT-X-MEDIA:TYPE=AUDIO"):
                                 # Program name as EN_20_L or EN_51_LFE as examples
-                                program_name = re.search(r'NAME="([^"]+)"', line).group(1)
-                                if program_name:
+                                media_id = re.search(r'NAME="([^"]+)"', line).group(1)
+                                if media_id:
                                     # Channel for current sound field?
-                                    if track_entry["program_name"] in program_name:
-                                        parts = program_name.split('_')
+                                    if track_entry["media_id"] in media_id:
+                                        parts = media_id.split('_')
                                         # Only use program names for the channels, which should be "EN" "20" "L".
                                         #   If just two parts, then it's the program name for the sound field
                                         if len(parts) == 3:
                                             channel_id = parts[-1]
-                                            channel_list[channel_id] = program_name
+                                            channel_list[channel_id] = media_id
             except FileNotFoundError:
                 print(f"Error: M3u8 manifest file not found at {m3u8_manifest_file}")
             except json.JSONDecodeError:
@@ -433,12 +412,12 @@ def get_audio_track_channel_list(track_entry: dict, template: dict) -> dict:
     return channel_list
 
 
-def add_audio_metric_tracks(track_entry: dict, template: dict) -> list:
+def add_presentation_timeline_audio_analysis_metric_tracks(track_entry: dict, template: dict) -> list:
     analysis = []
 
     analysis_dir = template["output"]["analysis_dir"]
-    rms_analysis = track_entry["program_name"] + "_RMS"
-    r128_analysis = track_entry["program_name"] + "_R128"
+    rms_analysis = track_entry["media_id"] + "_RMS"
+    r128_analysis = track_entry["media_id"] + "_R128"
 
     for filename in os.listdir(analysis_dir):
         filepath = os.path.join(analysis_dir, filename)
@@ -479,67 +458,71 @@ def add_audio_metric_tracks(track_entry: dict, template: dict) -> list:
     return analysis
 
 
-def add_audio_analysis_tracks(track_entry: dict, template: dict) -> dict:
+def add_presentation_timeline_audio_analysis_tracks(track_entry: dict, template: dict) -> dict:
     static_tracks = get_static_analysis_tracks("audio", template)
-    metric_tracks = add_audio_metric_tracks(track_entry, template)
+    metric_tracks = add_presentation_timeline_audio_analysis_metric_tracks(track_entry, template)
     track_entry["analysis"] = static_tracks + metric_tracks
 
     return track_entry
 
 
-def add_audio_track(player_json: dict, template: dict) -> dict:
-    for track in template["sources"]["tracks"]["audio"]:
-        text_track_mezzanine = find_source_mezzanine(track["source_id"], template)
-        if not text_track_mezzanine:
+def add_presentation_timeline_audio_tracks(player_json: dict, template: dict) -> dict:
+    audio_tracks = template.get("sources", {}).get("tracks", {}).get("audio", [])
+    timeline_tracks = player_json.setdefault("presentation", {}).setdefault("timeline", {}).setdefault("tracks", [])
+
+    for idx, track in enumerate(audio_tracks, start=1):
+        audio_track_mezzanine = find_source_mezzanine(track["source_id"], template)
+        if not audio_track_mezzanine:
             continue
 
         track_entry = {
-            "name": f'{os.path.basename(text_track_mezzanine["src"])} ({track["display_text"]})',
+            "id": f"AT{idx}",
+            "type": "audio",
+            "name": f'{os.path.basename(audio_track_mezzanine["src"])} ({track["display_text"]})',
             "source_id": track["source_id"],
-            "program_name": track["program_name"],
+            "media_id": track["media_id"],
             "channel_layout": "",
-            "language": "eng",
+            "language": track["language"],
             "visual_reference": [],
             "analysis": []
         }
 
-        track_entry = add_audio_track_channel_waveforms(track_entry, template)
+        track_entry = add_presentation_timeline_audio_track_channel_waveforms(track_entry, template)
+        track_entry = add_presentation_timeline_audio_analysis_tracks(track_entry, template)
 
-        track_entry = add_audio_analysis_tracks(track_entry, template)
-
-        player_json["data"]["media_tracks"]["audio"].append(track_entry)
+        timeline_tracks.append(track_entry)
 
     return player_json
 
 
-def add_text_tracks(player_json: dict, template: dict) -> dict:
-    for track in template["sources"]["tracks"]["text"]:
+def add_presentation_timeline_text_tracks(player_json: dict, template: dict) -> dict:
+    text_tracks = template.get("sources", {}).get("tracks", {}).get("text", [])
+    timeline_tracks = player_json.setdefault("presentation", {}).setdefault("timeline", {}).setdefault("tracks", [])
+
+    for idx, track in enumerate(text_tracks, start=1):
         text_track_mezzanine = find_source_mezzanine(track["source_id"], template)
         if not text_track_mezzanine:
             continue
 
         track_entry = {
+            "id": f"TT{idx}",
+            "type": "text",
             "name": f'{os.path.basename(text_track_mezzanine["src"])} ({track["display_text"]})',
             "source_id": track["source_id"],
-            "program_name": track["program_name"],
-            "language": "eng",
+            "media_id": track["media_id"],
+            "language": track["language"]
         }
 
-        player_json["data"]["media_tracks"]["text"].append(track_entry)
+        timeline_tracks.append(track_entry)
 
     return player_json
 
 
-def add_media_tracks(player_json: dict, template: dict) -> dict:
-    player_json["data"]["media_tracks"] = {
-        "video": [],
-        "audio": [],
-        "text": []
-    }
+def add_presentation_timeline_tracks(player_json: dict, template: dict) -> dict:
 
-    player_json = add_video_track(player_json, template)
-    player_json = add_audio_track(player_json, template)
-    player_json = add_text_tracks(player_json, template)
+    player_json = add_presentation_timeline_video_track(player_json, template)
+    player_json = add_presentation_timeline_audio_tracks(player_json, template)
+    player_json = add_presentation_timeline_text_tracks(player_json, template)
 
     return player_json
 
@@ -547,7 +530,7 @@ def add_media_tracks(player_json: dict, template: dict) -> dict:
 def load_metadata(metadata_file: str) -> dict:
     metadata = {}
 
-    # If full path has not been provided,
+    # If a full path has not been provided,
     if not Path(metadata_file).exists():
         # Look in default 'sources' directory
         metadata_file = os.path.join("sources", metadata_file)
@@ -569,69 +552,53 @@ def load_metadata(metadata_file: str) -> dict:
     return metadata
 
 
+def add_presentation_infotabs(player_json: dict, template: dict) -> dict:
+    info_tabs = player_json.setdefault("presentation", {}).setdefault("info_tabs", [])
+
+    for entry in template.get("sources", {}).get("metadata", []):
+        src = entry.get("src")
+        if not src:
+            continue
+
+        display_name = (
+            entry.get("display_name") or os.path.splitext(os.path.basename(src))[0]
+        )
+        metadata = load_metadata(src)
+
+        info_tabs.append(
+            {
+                "name": display_name,
+                "type": "json",
+                "visualization": "json_tree",
+                "data": {os.path.splitext(os.path.basename(src))[0]: metadata},
+            }
+        )
+
+    return player_json
+
+
 def add_presentation(player_json: dict, template: dict) -> dict:
-    # Create an empty presentation object
-    player_json["presentation"] = {}
-    player_json["presentation"]["layout"] = {}
-    player_json["presentation"]["info_tabs"] = []
-    player_json["presentation"]["timeline_configuration"] = {}
-    player_json["presentation"]["segmentation_actions"] = []
 
-    if "src" not in template["sources"]["metadata"][0]:
-        return player_json
+    # Add timeline tracks tracks
+    player_json = add_presentation_timeline_tracks(player_json, template)
 
-    metadata_path = template["sources"]["metadata"][0]["src"]
-
-    if "display_name" not in template["sources"]["metadata"][0]:
-        display_name = os.path.splitext(os.path.basename(metadata_path))[0]
-    else:
-        display_name = template["sources"]["metadata"][0]["display_name"]
-
-    metadata = load_metadata(metadata_path)
-
-    new_info_tab = {
-        "name": display_name,
-        "type": "json",
-        "visualization": "json_tree",
-        "data": {
-            os.path.splitext(os.path.basename(metadata_path))[0]: metadata
-        }
-    }
-
-    player_json["presentation"]["info_tabs"].append(new_info_tab)
+    # Add any info tabs
+    player_json = add_presentation_infotabs(player_json, template)
 
     return player_json
 
 
 def create_player_json_from_template(template: dict) -> dict:
-    player_json = {}
-
-    # Add a version stub
-    add_version(player_json, template)
+    # Add $.version
+    player_json = add_version({}, template)
     
-    # Add a security token stub
-    add_session(player_json, template)
+    # Add $.sources[]
+    player_json = add_sources(player_json, template)
 
-    player_json["data"] = {
-        "source_info": [],
-        "media_info": [],
-        "master_manifests": [],
-        "media_tracks": {}
-    }
+    # Add $.media{}
+    player_json = add_media(player_json, template)
 
-    # Add source info
-    player_json = add_source_info(player_json, template)
-
-    # Add media info
-    player_json = add_media_info(player_json, template)
-
-    # Add master manifest
-    player_json = add_master_manifest(player_json, template)
-
-    # Add media tracks
-    player_json = add_media_tracks(player_json, template)
-
-    # Add presentation
+    # Add $.presentation{}
     player_json = add_presentation(player_json, template)
 
     return player_json
@@ -639,9 +606,9 @@ def create_player_json_from_template(template: dict) -> dict:
 
 def load_template(template_path) -> dict:
     """
-    Load the template player json file into a dictionary
-    :param template_path: Path to the template player json file
-    :return: Dictionary containing the template player json file
+    Load the template player JSON file into a dictionary
+    :param template_path: Path to the template player JSON file
+    :return: Dictionary containing the template player JSON file
     """
     template = {}
     try:
@@ -723,7 +690,7 @@ def create_output_dir_structure(template) -> bool:
 
 
 def add_output_defaults(template) -> bool:
-    # Either the player json filename or the root directory of the output must be specified.
+    # Either the player JSON filename or the root directory of the output must be specified.
     if ("player_json" not in template.get("output", {})) & ("root_dir" not in template.get("output", {})):
         print("Error: Template must include either \".output.root_dir\" or \".output.player_json\"")
         return False
@@ -764,7 +731,7 @@ def setup_player_json_args(subparsers):
 
 
 def create_player_json(args: Namespace):
-    if Path(args.template).exists() is False:
+    if not Path(args.template).exists():
         print(f"input file {args.template} does not exist.")
         return
 

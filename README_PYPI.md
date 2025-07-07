@@ -187,7 +187,7 @@ search the `hls` directory for these directories.
 
 The `tracks` section contains the video, audio and text tracks to be presented in OMP player. Each track is mapped to
 the source mezzanine file via the `source_id` field and the media track in the HLS ABR m3u8 manifest via the
-`program_name`
+`media_id`
 field. The`display_text` field is used to present the track name in OMP player.
 
 ```json
@@ -229,19 +229,22 @@ field. The`display_text` field is used to present the track name in OMP player.
                 {
                     "source_id": "V1",
                     "display_text": "English 2.0",
-                    "program_name": "EN_20"
+                    "media_id": "EN_20",
+                    "language": "en"
                 },
                 {
                     "source_id": "A1",
                     "display_text": "English 5.1",
-                    "program_name": "EN_51"
+                    "media_id": "EN_51",
+                    "language": "en"
                 }
             ],
             "text": [
                 {
                     "source_id": "T1",
                     "display_text": "English Subtitles",
-                    "program_name": "English Subtitles"
+                    "media_id": "English Subtitles",
+                    "language": "en"
                 }
             ]
         },
@@ -445,6 +448,6 @@ ___
 # License
 
 ___
-`omakase-media-tools`, Copyright 2024 ByOmakase, LLC (https://byomakase.org)
+`omakase-media-tools`, Copyright 2025 ByOmakase, LLC (https://byomakase.org)
 
 
